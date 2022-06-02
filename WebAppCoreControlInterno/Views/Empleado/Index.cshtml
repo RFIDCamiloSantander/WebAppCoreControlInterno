@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Empleado>
+
+<h1>Empleados</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Tag/Epc</th>
+            <th>Fotografia</th>
+            <th>Cargo</th>
+            <th>Custom1</th>
+            <th>Custom2</th>
+            <th>Custom3</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empleado in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(m => empleado.Nombre1) @Html.DisplayFor(m => empleado.Nombre2)</td>
+            <td>@Html.DisplayFor(m => empleado.Apellido1) @Html.DisplayFor(m => empleado.Apellido2)</td>
+            <td>@Html.DisplayFor(m => empleado.Epc)</td>
+            <td>@Html.DisplayFor(m => empleado.Fotografia)</td>
+            <td>@Html.DisplayFor(m => empleado.FkIdCargo)</td>
+            <td>@Html.DisplayFor(m => empleado.Custom1)</td>
+            <td>@Html.DisplayFor(m => empleado.Custom2)</td>
+            <td>@Html.DisplayFor(m => empleado.Custom3)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+HIIIII
