@@ -15,7 +15,9 @@ namespace WebAppCoreControlInterno.Models.ViewModels
         public string Nombre1 { get; set; }
         [Display(Name = "Segundo Nombre")]
         public string Nombre2 { get; set; }
+        [Display(Name = "Primer Apellido")]
         public string Apellido1 { get; set; }
+        [Display(Name = "Segundo Apellido")]
         public string Apellido2 { get; set; }
         public string Epc { get; set; }
         public string Fotografia { get; set; }
