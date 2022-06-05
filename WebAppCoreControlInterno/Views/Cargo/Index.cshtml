@@ -1,11 +1,11 @@
 ﻿@model List<Cargo>;
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col">
             <h1>Cargos</h1>
         </div>
-        <div class="col">
+        <div class="col text-end">
             <a asp-action="Create">
                 <button class="btn btn-primary">
                     Crear
@@ -14,20 +14,22 @@
         </div>
     </div>
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Cargo</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cargo in Model)
-        {
+<div class="container">
+    <table class="table">
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(m => cargo.IdCargo)</td>
-                <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
+                <th>ID</th>
+                <th>Cargo</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var cargo in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => cargo.IdCargo)</td>
+                    <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

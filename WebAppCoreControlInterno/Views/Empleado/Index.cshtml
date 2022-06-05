@@ -6,20 +6,21 @@
 
 @model List<Empleado>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Empleados</h1>
-            </div>
-            <div class="col">
-                    <a asp-action="Create">
-                        <button class="btn btn-primary">
-                            Crear
-                        </button>
-                    </a>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Empleados</h1>
+        </div>
+        <div class="col">
+            <a asp-action="Create">
+                <button class="btn btn-primary">
+                    Crear
+                </button>
+            </a>
         </div>
     </div>
+</div>
+<div class="container">
     <table class="table">
         <thead>
             <tr>
@@ -37,17 +38,18 @@
         <tbody>
             @foreach (var empleado in Model)
             {
-            <tr>
-                <td>@Html.DisplayFor(m => empleado.Rut)</td>
-                <td>@Html.DisplayFor(m => empleado.Nombre1) @Html.DisplayFor(m => empleado.Nombre2)</td>
-                <td>@Html.DisplayFor(m => empleado.Apellido1) @Html.DisplayFor(m => empleado.Apellido2)</td>
-                <td>@Html.DisplayFor(m => empleado.Epc)</td>
-                <td>@Html.DisplayFor(m => empleado.Fotografia)</td>
-                <td>@Html.DisplayFor(m => empleado.FkIdCargo)</td>
-                <td>@Html.DisplayFor(m => empleado.Custom1)</td>
-                <td>@Html.DisplayFor(m => empleado.Custom2)</td>
-                <td>@Html.DisplayFor(m => empleado.Custom3)</td>
-            </tr>
+                <tr>
+                    <td>@Html.DisplayFor(m => empleado.Rut)</td>
+                    <td>@Html.DisplayFor(m => empleado.Nombre1) @Html.DisplayFor(m => empleado.Nombre2)</td>
+                    <td>@Html.DisplayFor(m => empleado.Apellido1) @Html.DisplayFor(m => empleado.Apellido2)</td>
+                    <td>@Html.DisplayFor(m => empleado.Epc)</td>
+                    <td>@Html.DisplayFor(m => empleado.Fotografia)</td>
+                    <td>@Html.DisplayFor(m => empleado.FkIdCargo)</td>
+                    <td>@Html.DisplayFor(m => empleado.Custom1)</td>
+                    <td>@Html.DisplayFor(m => empleado.Custom2)</td>
+                    <td>@Html.DisplayFor(m => empleado.Custom3)</td>
+                </tr>
             }
         </tbody>
     </table>
+</div>

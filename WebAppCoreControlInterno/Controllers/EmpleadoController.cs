@@ -22,7 +22,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para obtener los datos de la Tabla Empleado
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Empleados.ToListAsync());
+            var empleados = _context.Empleados.Include(e => e.FkIdCargoNavigation );
+            return View( await empleados.ToListAsync() );
         }
 
         //Chequeando que hace
