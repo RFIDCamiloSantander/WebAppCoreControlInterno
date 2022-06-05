@@ -7,11 +7,6 @@ namespace WebAppCoreControlInterno.Models
 {
     public partial class Empleado
     {
-        public Empleado()
-        {
-            Elementos = new HashSet<Elemento>();
-        }
-
         public int IdEmpleado { get; set; }
         public string Rut { get; set; }
         public string Nombre1 { get; set; }
@@ -27,6 +22,5 @@ namespace WebAppCoreControlInterno.Models
         public string Custom3 { get; set; }
 
         public virtual Cargo FkIdCargoNavigation { get; set; }
-        public virtual ICollection<Elemento> Elementos { get; set; }
     }
 }

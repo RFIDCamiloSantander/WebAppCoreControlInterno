@@ -22,14 +22,14 @@ namespace WebAppCoreControlInterno.Controllers
         //Para obtener los datos de la Tabla Empleado
         public async Task<IActionResult> Index()
         {
-            var empleados = _context.Empleados.Include(e => e.FkIdCargoNavigation );
+            var empleados = _context.Empleados.Include( b => b.FkIdCargoNavigation );
             return View( await empleados.ToListAsync() );
         }
 
         //Chequeando que hace
         public IActionResult Create()
         {
-            ViewData["Empleados"] = new SelectList( _context.Empleados, "");
+            ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
             return View();
         }
 
@@ -37,7 +37,7 @@ namespace WebAppCoreControlInterno.Controllers
         [HttpPost]
         public IActionResult Create(int a)
         {
-            ViewData["Empleados"] = new SelectList(_context.Empleados, "");
+            ViewData["Cargos"] = new SelectList(_context.Empleados, "");
             return View();
         }
     }

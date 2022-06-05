@@ -7,7 +7,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-12 col-md-5">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Crear Empleado</h1>
 
@@ -17,14 +17,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Rut" class="form-label"></label>
-                                    <input asp-for="Rut" class="form-control" />
+                                    <input asp-for="Rut" class="form-control shadow" />
                                     <span asp-validation-for="Rut" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Epc" class="form-label"></label>
-                                    <input asp-for="Epc" class="form-control" />
+                                    <input asp-for="Epc" class="form-control shadow" />
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>
@@ -33,14 +33,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Nombre1" class="form-label"></label>
-                                    <input asp-for="Nombre1" class="form-control" />
+                                    <input asp-for="Nombre1" class="form-control shadow" />
                                     <span asp-validation-for="Nombre1" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Nombre2" class="form-label"></label>
-                                    <input asp-for="Nombre2" class="form-control" />
+                                    <input asp-for="Nombre2" class="form-control shadow" />
                                     <span asp-validation-for="Nombre2" class="text-danger"></span>
                                 </div>
                             </div>
@@ -65,7 +65,9 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdCargo" class="form-label"></label>
-                                    <select asp-for="FkIdCargo" asp-items="ViewBag.Empleados" class="form-control" />
+                                    <select asp-for="FkIdCargo" asp-items="ViewBag.Cargos" class="form-control">
+                                        <option value="0">Cargo</option>
+                                    </select>
                                     <span asp-validation-for="FkIdCargo" class="text-danger"></span>
                                 </div>
                             </div>
