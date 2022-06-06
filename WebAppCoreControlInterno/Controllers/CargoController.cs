@@ -20,15 +20,16 @@ namespace WebAppCoreControlInterno.Controllers
             _context = context;
         }
 
+
+        //Para mostrar Vista principal.
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cargos.ToListAsync());
         }
 
-        //Chequeando que hace
+        //Para mostrar Vista para Crear.
         public IActionResult Create()
         {
-            ViewData["Cargos"] = new SelectList(_context.Cargos, "");
             return View();
         }
 
@@ -54,17 +55,63 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        
-        public IActionResult Editar(int pId)
+        //Para mostrar el Cargo a editar.
+        public IActionResult Editar(int Id)
         {
             CargoViewModel model = new CargoViewModel();
 
-            var oCargo = _context.Cargos.Find(pId);
+            var oCargo = _context.Cargos.Find(Id);
+            
+            model.IdCargo = oCargo.IdCargo;
+            model.Cargo1 = oCargo.Cargo1;
+
+            return View(model);
+        }
+
+
+        //Para editar Cargo.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar( CargoViewModel model)
+        {
+            if ( ModelState.IsValid )
+            {
+                var tCargo = _context.Cargos.Find(model.IdCargo);
+
+                //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
+                tCargo.Cargo1 = model.Cargo1;
+
+                _context.Entry(tCargo).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+
+        //Para confirmar eliminacion de Cargo.
+        public IActionResult Eliminar(int Id)
+        {
+            CargoViewModel model = new CargoViewModel();
+
+            var oCargo = _context.Cargos.Find(Id);
 
             model.IdCargo = oCargo.IdCargo;
             model.Cargo1 = oCargo.Cargo1;
 
             return View(model);
+        }
+
+
+        //Para eliminar Cargo.
+        [HttpPost, ActionName("Eliminar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EliminarConfirmado(int id)
+        {
+            var cargo = await _context.Cargos.FindAsync(id);
+            _context.Cargos.Remove(cargo);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

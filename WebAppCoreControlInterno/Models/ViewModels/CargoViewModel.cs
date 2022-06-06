@@ -5,8 +5,10 @@ namespace WebAppCoreControlInterno.Models.ViewModels
 {
     public class CargoViewModel
     {
+        [Display(Name = "Id")]
         public int IdCargo { get; set; }
 
+        [Display(Name = "Nombre Cargo")]
         [Required]
         public string Cargo1 { get; set; }
 

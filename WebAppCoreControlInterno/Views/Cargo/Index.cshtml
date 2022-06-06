@@ -7,9 +7,9 @@
         </div>
         <div class="col text-end">
             <a asp-action="Create" class="btn btn-primary">
-                
-                    Crear
-                
+
+                Crear
+
             </a>
         </div>
     </div>
@@ -30,8 +30,11 @@
                     <td>@Html.DisplayFor(m => cargo.IdCargo)</td>
                     <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
                     <td>
-                        <a class="btn btn-primary" asp-action="Editar/@cargo.IdCargo">Editar</a>
-                        <a class="btn btn-danger" href="~/Cargo/Eliminar/@cargo.IdCargo">Eliminar</a>
+                        <a class="btn btn-primary" href="Cargo/Editar/@cargo.IdCargo">Editar</a>
+                        @*Distintas Formas de lograr lo mismo*@
+                        @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
+                        @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
+                        <a class="btn btn-danger" href="Cargo/Eliminar/@cargo.IdCargo">Eliminar</a>
                     </td>
                 </tr>
             }
