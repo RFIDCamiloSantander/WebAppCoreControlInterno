@@ -6,10 +6,10 @@
             <h1>Cargos</h1>
         </div>
         <div class="col text-end">
-            <a asp-action="Create">
-                <button class="btn btn-primary">
+            <a asp-action="Create" class="btn btn-primary">
+                
                     Crear
-                </button>
+                
             </a>
         </div>
     </div>
@@ -20,6 +20,7 @@
             <tr>
                 <th>ID</th>
                 <th>Cargo</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,10 @@
                 <tr>
                     <td>@Html.DisplayFor(m => cargo.IdCargo)</td>
                     <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
+                    <td>
+                        <a class="btn btn-primary" asp-action="Editar/@cargo.IdCargo">Editar</a>
+                        <a class="btn btn-danger" href="~/Cargo/Eliminar/@cargo.IdCargo">Eliminar</a>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -15,14 +15,14 @@ namespace WebAppCoreControlInterno.Controllers
 
         private readonly ControlInternoContext _context;
 
-        public CargoController( ControlInternoContext context )
+        public CargoController(ControlInternoContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View( await _context.Cargos.ToListAsync());
+            return View(await _context.Cargos.ToListAsync());
         }
 
         //Chequeando que hace
@@ -35,23 +35,36 @@ namespace WebAppCoreControlInterno.Controllers
         //Para crear empleados
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( CargoViewModel model )
+        public async Task<IActionResult> Create(CargoViewModel model)
         {
-            if ( ModelState.IsValid )
+            if (ModelState.IsValid)
             {
                 Cargo cargo = new Cargo()
                 {
                     Cargo1 = model.Cargo1
                 };
 
-                _context.Add( cargo );
+                _context.Add(cargo);
 
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Cargos"] = new SelectList(_context.Cargos, "");
-            return View( model );
+            return View(model);
+        }
+
+
+        
+        public IActionResult Editar(int pId)
+        {
+            CargoViewModel model = new CargoViewModel();
+
+            var oCargo = _context.Cargos.Find(pId);
+
+            model.IdCargo = oCargo.IdCargo;
+            model.Cargo1 = oCargo.Cargo1;
+
+            return View(model);
         }
     }
 }

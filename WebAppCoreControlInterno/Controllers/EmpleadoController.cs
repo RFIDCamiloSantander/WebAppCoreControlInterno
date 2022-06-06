@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
+using WebAppCoreControlInterno.Models.ViewModels;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -14,17 +15,19 @@ namespace WebAppCoreControlInterno.Controllers
         private readonly ControlInternoContext _context;
 
         //Se obtiene el context del controlador
-        public EmpleadoController( ControlInternoContext context )
+        public EmpleadoController(ControlInternoContext context)
         {
             _context = context;
         }
 
+
         //Para obtener los datos de la Tabla Empleado
         public async Task<IActionResult> Index()
         {
-            var empleados = _context.Empleados.Include( b => b.FkIdCargoNavigation );
-            return View( await empleados.ToListAsync() );
+            var empleados = _context.Empleados.Include(b => b.FkIdCargoNavigation);
+            return View(await empleados.ToListAsync());
         }
+
 
         //Chequeando que hace
         public IActionResult Create()
@@ -33,12 +36,38 @@ namespace WebAppCoreControlInterno.Controllers
             return View();
         }
 
-        //Para crear empleados
+
+        //Para crear empleados - por POST
         [HttpPost]
-        public IActionResult Create(int a)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(EmpleadoViewModel model)
         {
-            ViewData["Cargos"] = new SelectList(_context.Empleados, "");
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (model.Contrasena == model.Contrasena2)
+                {
+                    var empleado = new Empleado()
+                    {
+                        Rut = model.Rut,
+                        Nombre1 = model.Nombre1,
+                        Nombre2 = model.Nombre2,
+                        Apellido1 = model.Apellido1,
+                        Apellido2 = model.Apellido2,
+                        Epc = model.Epc,
+                        Fotografia = model.Fotografia,
+                        Contrasena = model.Contrasena,
+                        FkIdCargo = model.FkIdCargo,
+                        Custom1 = model.Custom1,
+                        Custom2 = model.Custom2,
+                        Custom3 = model.Custom3,
+                    };
+                    _context.Add(empleado);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            ViewData["Cargos"] = new SelectList(_context.Empleados, "IdCargo", "Cargo1", model.FkIdCargo);
+            return View(model);
         }
     }
 }

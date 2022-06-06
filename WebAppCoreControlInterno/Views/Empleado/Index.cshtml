@@ -6,11 +6,7 @@
             <h1>Empleados</h1>
         </div>
         <div class="col text-end">
-            <a asp-action="Create">
-                <button class="btn btn-primary">
-                    Crear
-                </button>
-            </a>
+            <a asp-action="Create" class="btn btn-primary">Crear</a>
         </div>
     </div>
 </div>
@@ -24,9 +20,7 @@
                 <th>Tag/Epc</th>
                 <th>Fotografia</th>
                 <th>Cargo</th>
-                <th>Custom1</th>
-                <th>Custom2</th>
-                <th>Custom3</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,9 +33,10 @@
                     <td>@Html.DisplayFor(m => empleado.Epc)</td>
                     <td>@Html.DisplayFor(m => empleado.Fotografia)</td>
                     <td>@Html.DisplayFor(m => empleado.FkIdCargoNavigation.Cargo1)</td>
-                    <td>@Html.DisplayFor(m => empleado.Custom1)</td>
-                    <td>@Html.DisplayFor(m => empleado.Custom2)</td>
-                    <td>@Html.DisplayFor(m => empleado.Custom3)</td>
+                    <td>
+                        <a class="btn btn-primary" href="../Views/Empleado/Editar/@empleado.IdEmpleado">Editar</a>
+                        <a class="btn btn-danger" href="../Views/Empleado/Eliminar/@empleado.IdEmpleado">Eliminar</a>
+                    </td>
                 </tr>
             }
         </tbody>

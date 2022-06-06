@@ -25,6 +25,8 @@ namespace WebAppCoreControlInterno.Models.ViewModels
         public string Epc { get; set; }
         [Display(Name = "Fotografía")]
         public string Fotografia { get; set; }
+        public string Contrasena { get; set; }
+        public string Contrasena2 { get; set; }
         [Required]
         [Display(Name = "Cargo")]
         public int? FkIdCargo { get; set; }
