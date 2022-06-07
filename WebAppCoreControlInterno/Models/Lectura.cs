@@ -13,8 +13,8 @@ namespace WebAppCoreControlInterno.Models
         public DateTime UltimaVista { get; set; }
         public int Rssi { get; set; }
         public byte Antenna { get; set; }
-        public int FkIdLector { get; set; }
-        public int FkIdElemento { get; set; }
+        public int? FkIdLector { get; set; }
+        public int? FkIdElemento { get; set; }
         public string Custom1 { get; set; }
         public string Custom2 { get; set; }
         public string Custom3 { get; set; }

@@ -12,9 +12,10 @@ namespace WebAppCoreControlInterno.Controllers
 {
     public class CargoController : Controller
     {
-
+        //Se crea la variable para el conexto (BD)
         private readonly ControlInternoContext _context;
 
+        //Se asigna el conexto(BD) a la variable
         public CargoController(ControlInternoContext context)
         {
             _context = context;
@@ -72,7 +73,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para editar Cargo.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Editar( CargoViewModel model)
+        public IActionResult Editar( [Bind(include:"IdCargo, Cargo1")] CargoViewModel model)
         {
             if ( ModelState.IsValid )
             {

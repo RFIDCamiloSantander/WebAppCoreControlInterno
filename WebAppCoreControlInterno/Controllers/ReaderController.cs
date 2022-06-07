@@ -1,23 +1,120 @@
 ﻿using Impinj.OctaneSdk;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppCoreControlInterno.Models;
+using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReaderController : ControllerBase
+    public class ReaderController : Controller
     {
-
-        const string READER_HOSTNAME = "192.168.2.150";  // NEED to set to your speedway!
+        const string READER_HOSTNAME = "SpeedwayR-10-29-88";  // NEED to set to your speedway!
         // Create an instance of the ImpinjReader class.
         static ImpinjReader reader = new ImpinjReader();
-        
 
+        //Se crea la variable para el conexto (BD)
+        private readonly ControlInternoContext _context;
+
+        //Se asigna el conexto(BD) a la variable
+        public ReaderController(ControlInternoContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View( await _context.Lecturas.ToListAsync() );
+        }
+
+
+        //Test para iniciar lecturas
+        public Settings CrearLectura()
+        {
+            try
+            {
+                //Se asigna un nombre al reader.
+                reader.Name = "TestName";
+
+                //Se conecta al reader
+                ConnectToReader();
+
+                // Get the default settings.
+                // We'll use these as a starting point
+                // and then modify the settings we're 
+                // interested in.
+                Settings settings = reader.QueryDefaultSettings();
+
+                // Start the reader as soon as it's configured.
+                // This will allow it to run without a client connected.
+                settings.AutoStart.PeriodInMs = 100;
+                settings.AutoStart.Mode = AutoStartMode.Periodic;
+                
+                //Aqui tengo que hacer algo
+
+                //settings.AutoStop.DurationInMs = 100;
+                //settings.AutoStop.Mode = AutoStopMode.Duration;
+
+                // Use Advanced GPO to set GPO #1 
+                // when an client (LLRP) connection is present.
+                settings.Gpos.GetGpo(1).Mode = GpoMode.LLRPConnectionStatus;
+
+                // Tell the reader to include the timestamp in all tag reports.
+                settings.Report.IncludeFirstSeenTime = true;
+                settings.Report.IncludeLastSeenTime = true;
+                settings.Report.IncludeSeenCount = true;
+
+                // Enable keepalives.
+                settings.Keepalives.Enabled = true;
+                settings.Keepalives.PeriodInMs = 5000;
+
+                // Enable link monitor mode.
+                // If our application fails to reply to
+                // five consecutive keepalive messages,
+                // the reader will close the network connection.
+                settings.Keepalives.EnableLinkMonitorMode = true;
+                settings.Keepalives.LinkDownThreshold = 5;
+
+                // Apply the newly modified settings.
+                reader.ApplySettings(settings);
+
+                // Assign an event handler that will be called
+                // when keepalive messages are received.
+                reader.KeepaliveReceived += OnKeepaliveReceived;
+
+                // Assign an event handler that will be called
+                // if the reader stops sending keepalives.
+                reader.ConnectionLost += OnConnectionLost;
+
+                // Assign the TagsReported event handler.
+                // This specifies which method to call
+                // when tags reports are available.
+                reader.TagsReported += OnTagsReported;
+
+                //System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(settings) );
+                return settings;
+            }
+            catch (OctaneSdkException e)
+            {
+                // Handle Octane SDK errors.
+                System.Diagnostics.Debug.WriteLine("Octane SDK exception: {0}", e.Message);
+                Console.WriteLine("Octane SDK exception: {0}", e.Message);
+                throw e;
+            }
+            catch (Exception e)
+            {
+                // Handle other .NET errors.
+                System.Diagnostics.Debug.WriteLine("Exception : {0}", e.Message);
+                Console.WriteLine("Exception : {0}", e.Message);
+                throw;
+            }
+        }
+
+
+        //Coneccion al lector
         static void ConnectToReader()
         {
             try
@@ -25,12 +122,17 @@ namespace WebAppCoreControlInterno.Controllers
                 Console.WriteLine("Attempting to connect to {0} ({1}).",
                     reader.Name, READER_HOSTNAME);
 
+                System.Diagnostics.Debug.WriteLine("Attempting to connect to {0} ({1}).",
+                    reader.Name, READER_HOSTNAME);
+
                 // The maximum number of connection attempts
                 // before throwing an exception.
                 //reader.MaxConnectionAttempts = 15;
+
                 // Number of milliseconds before a 
                 // connection attempt times out.
-                reader.ConnectTimeout = 600;
+                reader.ConnectTimeout = 6000;
+
                 // Connect to the reader.
                 // Change the ReaderHostname constant in SolutionConstants.cs 
                 // to the IP address or hostname of your reader.
@@ -44,9 +146,44 @@ namespace WebAppCoreControlInterno.Controllers
             }
             catch (OctaneSdkException e)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to connect.");
                 Console.WriteLine("Failed to connect.");
+                System.Diagnostics.Debug.WriteLine("Failed to connect.");
                 throw e;
+            }
+        }
+
+        static void OnConnectionLost(ImpinjReader reader)
+        {
+            // This event handler is called if the reader  
+            // stops sending keepalive messages (connection lost).
+            System.Diagnostics.Debug.WriteLine("Connection lost : {0} ({1})", reader.Name, reader.Address);
+            Console.WriteLine("Connection lost : {0} ({1})", reader.Name, reader.Address);
+
+            // Cleanup
+            reader.Disconnect();
+
+            // Try reconnecting to the reader
+            ConnectToReader();
+        }
+
+        static void OnKeepaliveReceived(ImpinjReader reader)
+        {
+            // This event handler is called when a keepalive 
+            // message is received from the reader.
+            System.Diagnostics.Debug.WriteLine("Keepalive received from {0} ({1})", reader.Name, reader.Address);
+            Console.WriteLine("Keepalive received from {0} ({1})", reader.Name, reader.Address);
+        }
+
+        static void OnTagsReported(ImpinjReader sender, TagReport report)
+        {
+            // This event handler is called asynchronously 
+            // when tag reports are available.
+            // Loop through each tag in the report 
+            // and print the data.
+            foreach (Tag tag in report)
+            {
+                System.Diagnostics.Debug.WriteLine("EPC : {0} Timestamp : {1}", tag.Epc, tag.LastSeenTime);
+                Console.WriteLine("EPC : {0} Timestamp : {1}", tag.Epc, tag.LastSeenTime);
             }
         }
     }

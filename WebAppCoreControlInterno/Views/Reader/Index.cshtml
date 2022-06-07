@@ -1,0 +1,52 @@
+﻿@model List<Lectura>;
+
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Epc</th>
+                <th>Primera Vista</th>
+                <th>Ultima Vista</th>
+                <th>Rssi</th>
+                <th>Antena</th>
+                <th>Lector</th>
+                <th>Custom1</th>
+                <th>Custom2</th>
+                <th>Custom3</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lectura in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(m => lectura.IdLectura)</td>
+                <td>@Html.DisplayFor(m => lectura.PrimeraVista)</td>
+                <td>@Html.DisplayFor(m => lectura.UltimaVista)</td>
+                <td>@Html.DisplayFor(m => lectura.Rssi)</td>
+                <td>@Html.DisplayFor(m => lectura.Antenna)</td>
+                <td>@Html.DisplayFor(m => lectura.FkIdLector)</td>
+                <td>@Html.DisplayFor(m => lectura.Custom1)</td>
+                <td>@Html.DisplayFor(m => lectura.Custom2)</td>
+                <td>@Html.DisplayFor(m => lectura.Custom3)</td>
+                <td>@Html.DisplayFor(m => lectura.Epc)</td>
+                <td>
+                    <a class="btn btn-primary" href="Lectura/Editar/@lectura.IdLectura">Editar</a>
+                    @*Distintas Formas de lograr lo mismo*@
+                    @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
+                    @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
+                    <a class="btn btn-danger" href="Lectura/Eliminar/@lectura.IdLectura">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="Reader/CrearLectura"></a>
+        </div>
+    </div>
+</div>

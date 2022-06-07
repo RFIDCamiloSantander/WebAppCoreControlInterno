@@ -355,13 +355,11 @@ namespace WebAppCoreControlInterno.Models
                 entity.HasOne(d => d.FkIdElementoNavigation)
                     .WithMany(p => p.Lecturas)
                     .HasForeignKey(d => d.FkIdElemento)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LECTURA_ELEMENTO");
 
                 entity.HasOne(d => d.FkIdLectorNavigation)
                     .WithMany(p => p.Lecturas)
                     .HasForeignKey(d => d.FkIdLector)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LECTURA_LECTOR");
             });
 
