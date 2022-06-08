@@ -214,9 +214,7 @@ namespace WebAppCoreControlInterno.Models
 
                 entity.Property(e => e.Apellido2).HasMaxLength(50);
 
-                entity.Property(e => e.Contrasena)
-                    .IsRequired()
-                    .HasMaxLength(20);
+                entity.Property(e => e.Contrasena).HasMaxLength(20);
 
                 entity.Property(e => e.Custom1).HasMaxLength(50);
 
