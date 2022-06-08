@@ -3,29 +3,84 @@
 
 <div class="container mt-5 mb-3">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6">
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Editar Empleado</h1>
                     <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor(c => c.Rut)</div>
-                    <form asp-action="Editar">
+                    <form asp-action="EditarEmpleado">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.HiddenFor(c => c.IdEmpleado)
                         <div class="row">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            @Html.HiddenFor(c => c.IdEmpleado)
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-6">
                                 <div>
                                     <label asp-for="Nombre1" class="form-label"></label>
                                     <input asp-for="Nombre1" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Nombre1" class="text-danger"></span>
 
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-6">
                                 <div>
                                     <label asp-for="Nombre2" class="form-label"></label>
                                     <input asp-for="Nombre2" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Nombre2" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Apellido1" class="form-label"></label>
+                                    <input asp-for="Apellido1" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Apellido1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Apellido2" class="form-label"></label>
+                                    <input asp-for="Apellido2" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Apellido2" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Apellido1" class="form-label"></label>
+                                    <input asp-for="Apellido1" class="form-control shadow-sm mb-3" />
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Apellido2" class="form-label"></label>
+                                    <input asp-for="Apellido2" class="form-control shadow-sm mb-3" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdCargo" class="form-label"></label>
+                                    <select asp-for="FkIdCargo" asp-items="ViewBag.Cargos" class="form-control">
+                                        <option>Cargo</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdCargo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Fotografia" class="form-label"></label>
+                                    <input asp-for="Fotografia" class="form-control" />
+                                    <span asp-validation-for="Fotografia" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row text-end">
                             <div class="col">
                                 <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>

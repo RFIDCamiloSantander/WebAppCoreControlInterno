@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -29,7 +30,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Chequeando que hace
+        //Para poblar el select
         public IActionResult Create()
         {
             ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
@@ -85,29 +86,33 @@ namespace WebAppCoreControlInterno.Controllers
             model.Apellido2 = tEmpleado.Apellido2;
             model.Epc = tEmpleado.Epc;
             model.Fotografia = tEmpleado.Fotografia;
-            model.Fotografia = tEmpleado.FkIdCargoNavigation.Cargo1;
+            model.FkIdCargo = tEmpleado.FkIdCargo;
+
+            System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject( model ));
+
+            ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1", model.FkIdCargo );
 
             return View(model);
         }
 
 
         //Para editar Cargo.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Editar([Bind(include: "IdCargo, Cargo1")] CargoViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var tCargo = _context.Cargos.Find(model.IdCargo);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Editar([Bind(include: "IdCargo, Cargo1")] CargoViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var tCargo = _context.Cargos.Find(model.IdCargo);
 
-                //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
-                tCargo.Cargo1 = model.Cargo1;
+        //        //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
+        //        tCargo.Cargo1 = model.Cargo1;
 
-                _context.Entry(tCargo).State = EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(model);
-        }
+        //        _context.Entry(tCargo).State = EntityState.Modified;
+        //        _context.SaveChanges();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(model);
+        //}
     }
 }
