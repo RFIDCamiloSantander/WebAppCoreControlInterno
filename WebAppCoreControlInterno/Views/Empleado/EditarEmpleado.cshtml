@@ -1,0 +1,39 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels;
+@model EmpleadoViewModel;
+
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Editar Empleado</h1>
+                    <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor(c => c.Rut)</div>
+                    <form asp-action="Editar">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @Html.HiddenFor(c => c.IdEmpleado)
+                            <div class="col-12 col-md-4">
+                                <div>
+                                    <label asp-for="Nombre1" class="form-label"></label>
+                                    <input asp-for="Nombre1" class="form-control shadow-sm mb-3" />
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div>
+                                    <label asp-for="Nombre2" class="form-label"></label>
+                                    <input asp-for="Nombre2" class="form-control shadow-sm mb-3" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-end">
+                            <div class="col">
+                                <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

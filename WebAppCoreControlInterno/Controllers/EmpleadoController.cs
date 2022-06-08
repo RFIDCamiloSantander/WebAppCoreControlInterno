@@ -69,5 +69,45 @@ namespace WebAppCoreControlInterno.Controllers
             ViewData["Cargos"] = new SelectList(_context.Empleados, "IdCargo", "Cargo1", model.FkIdCargo);
             return View(model);
         }
+
+
+        //Para mostrar el Cargo a editar.
+        public IActionResult EditarEmpleado(int Id)
+        {
+            EmpleadoViewModel model = new EmpleadoViewModel();
+
+            var tEmpleado = _context.Empleados.Find(Id);
+
+            model.Rut = tEmpleado.Rut;
+            model.Nombre1 = tEmpleado.Nombre1;
+            model.Nombre2 = tEmpleado.Nombre2;
+            model.Apellido1 = tEmpleado.Apellido1;
+            model.Apellido2 = tEmpleado.Apellido2;
+            model.Epc = tEmpleado.Epc;
+            model.Fotografia = tEmpleado.Fotografia;
+            model.Fotografia = tEmpleado.FkIdCargoNavigation.Cargo1;
+
+            return View(model);
+        }
+
+
+        //Para editar Cargo.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar([Bind(include: "IdCargo, Cargo1")] CargoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var tCargo = _context.Cargos.Find(model.IdCargo);
+
+                //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
+                tCargo.Cargo1 = model.Cargo1;
+
+                _context.Entry(tCargo).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
     }
 }
