@@ -1,4 +1,15 @@
-﻿@model List<Cargo>;
+﻿@model List<Cargo>
+
+@{
+    Func<dynamic, object> cargoTemplate =
+    @<tr>
+        <td>@item.Cargo1</td>
+        <td>
+            <a class="btn btn-primary" href="Cargo/Editar/@item.IdCargo">Editar</a>
+            <a class="btn btn-danger" href="Cargo/Eliminar/@item.IdCargo">Eliminar</a>
+        </td>
+    </tr>;
+}
 
 <div class="container mt-5">
     <div class="row">
@@ -18,7 +29,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Cargo</th>
                 <th></th>
             </tr>
@@ -26,18 +36,26 @@
         <tbody>
             @foreach (var cargo in Model)
             {
-                <tr>
-                    <td>@Html.DisplayFor(m => cargo.IdCargo)</td>
-                    <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
-                    <td>
-                        <a class="btn btn-primary" href="Cargo/Editar/@cargo.IdCargo">Editar</a>
-                        @*Distintas Formas de lograr lo mismo*@
-                        @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
-                        @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
-                        <a class="btn btn-danger" href="Cargo/Eliminar/@cargo.IdCargo">Eliminar</a>
-                    </td>
-                </tr>
+                @cargoTemplate(cargo)
             }
         </tbody>
     </table>
 </div>
+
+
+
+
+
+@*<!-- COMENTARIOS PARA MI-->
+
+        <!--<tr>-->
+        <td>@Html.DisplayFor(m => cargo.Cargo1)</td>
+    <!--<td>
+        <a class="btn btn-primary" href="Cargo/Editar/@cargo.IdCargo">Editar</a>-->
+    @*Distintas Formas de lograr lo mismo
+    @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>
+    @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })
+    <!--<a class="btn btn-danger" href="Cargo/Eliminar/@cargo.IdCargo">Eliminar</a>
+        </td>
+    </tr>-->
+*@

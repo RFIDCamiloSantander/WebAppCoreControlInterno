@@ -99,6 +99,8 @@ namespace WebAppCoreControlInterno.Impinj
 
                 reader.Stop();
 
+                await Task.Delay(100);
+
                 return epcList;
 
                 //return Re

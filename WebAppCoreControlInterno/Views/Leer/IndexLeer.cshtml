@@ -1,14 +1,44 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
+@using Newtonsoft.Json
 @model LeerViewModel
+@{
+    var elDato = Model?.Data;
+}
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">Leer</h1>
+                    <div class="Row">
+                        <div class="col-6">
+                            <h1 class="card-title">Leer</h1>
+                        </div>
+                        <div class="col text-end">
+                            <a class="btn btn-primary" href="Ruta2">Leer</a>
+                        </div>
+                    </div>
                     <hr />
-                    <textarea class="form-control" asp-for="Data"></textarea>
+                    <label for="txtData">Data</label>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Dato</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (elDato != null)
+                            {
+                                foreach (var dato in elDato)
+                                {
+                                    <tr>
+                                        <td>@dato</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para obtener los datos de la Tabla Empleado
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexEmpleado()
         {
             var empleados = _context.Empleados.Include(b => b.FkIdCargoNavigation);
             return View(await empleados.ToListAsync());
@@ -31,7 +31,7 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para poblar el select
-        public IActionResult Create()
+        public IActionResult CrearEmpleado()
         {
             ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
             return View();
@@ -41,7 +41,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para crear empleados - por POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(EmpleadoViewModel model)
+        public async Task<IActionResult> CrearEmpleado(EmpleadoViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace WebAppCoreControlInterno.Controllers
                     };
                     _context.Add(empleado);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(IndexEmpleado));
                 }
             }
             ViewData["Cargos"] = new SelectList(_context.Empleados, "IdCargo", "Cargo1", model.FkIdCargo);

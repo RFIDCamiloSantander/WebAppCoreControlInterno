@@ -16,11 +16,10 @@ namespace WebAppCoreControlInterno.Controllers
             return View();
         }
 
-        
+        [Route("Ruta2")]
         public IActionResult IndexLeer( LeerViewModel m )
         {
             Reader r = new();
-
             m.Data = r.CrearLectura().Result;
             return View(m);
         }

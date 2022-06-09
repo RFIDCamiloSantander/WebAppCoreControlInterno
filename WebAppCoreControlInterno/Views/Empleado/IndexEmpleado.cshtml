@@ -6,7 +6,7 @@
             <h1>Empleados</h1>
         </div>
         <div class="col text-end">
-            <a asp-action="Create" class="btn btn-primary">Crear</a>
+            <a asp-action="CrearEmpleado" class="btn btn-primary">Crear</a>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
                     <td>@Html.DisplayFor(m => empleado.Fotografia)</td>
                     <td>@Html.DisplayFor(m => empleado.FkIdCargoNavigation.Cargo1)</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="Empleado/EditarEmpleado/@empleado.IdEmpleado">Editar</a>
+                        <a class="btn btn-primary btn-sm" href="EditarEmpleado/@empleado.IdEmpleado">Editar</a>
                         <a class="btn btn-danger btn-sm" href="Empleado/Eliminar/@empleado.IdEmpleado">Eliminar</a>
                     </td>
                 </tr>

@@ -1,17 +1,33 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model EmpleadoViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model EmpleadoViewModel
+@using WebAppCoreControlInterno.Impinj
 
+@{
+    List<string> listaEpc = null;
+
+    void leer() {
+        Reader r = new();
+        listaEpc = r.CrearLectura().Result;
+    }
+
+    async Task OnPostLeer()
+    {
+        leer();
+    }
+}
 
 @{/*Vista de empleados*/}
-
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-sm-12 col-md-6">
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Crear Empleado</h1>
+                    <form asp-page-handler="Leer" method="post">
+                        <button class="btn btn-primary">Leer EPC</button>
+                    </form>
 
-                    <form asp-action="Create">
+                    <form asp-action="CrearEmpleado">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row mb-3">
                             <div class="col-6">
@@ -24,7 +40,15 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Epc" class="form-label"></label>
-                                    <input asp-for="Epc" class="form-control shadow-sm" />
+                                    <select asp-for="Epc" class="form-control shadow-sm">
+                                        @if (listaEpc != null)
+                                        {
+                                            foreach (string epc in listaEpc)
+                                            {
+		                                        <option value="@epc">@epc</option>
+	                                        }
+                                        }
+                                    </select>
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>

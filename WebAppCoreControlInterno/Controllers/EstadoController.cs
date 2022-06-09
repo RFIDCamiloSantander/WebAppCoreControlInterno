@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        public IActionResult IndexEstado()
+        public async Task<IActionResult> IndexEstado()
         {
-            return View();
+            return View( await _context.Estados.ToListAsync() );
         }
     }
 }
