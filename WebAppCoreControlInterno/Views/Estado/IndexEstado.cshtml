@@ -1,0 +1,41 @@
+﻿@model List<Estado>;
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Estados</h1>
+        </div>
+
+        <div class="col text-end">
+            <a asp-action="CreateIndex" class="btn btn-primary">
+                Crear
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cargo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estado in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => estado.Estado1)</td>
+                    <td>
+                        <a class="btn btn-primary" href="Cargo/Editar/@estado.IdEstado">Editar</a>
+                        @*Distintas Formas de lograr lo mismo*@
+                        @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
+                        @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
+                        <a class="btn btn-danger" href="Cargo/Eliminar/@estado.IdEstado">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
