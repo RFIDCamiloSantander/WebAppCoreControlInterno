@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
+using WebAppCoreControlInterno.Models.ViewModels;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -21,9 +22,108 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
+
+        //Pantalla Index (Listar Estados)
         public async Task<IActionResult> IndexEstado()
         {
             return View( await _context.Estados.ToListAsync() );
+        }
+
+
+
+        //Carga pantalla para crear Estados
+        public IActionResult CrearEstado()
+        {
+            return View();
+        }
+
+
+
+        //Si el Formulario es valido, agrega el Estado a la BD
+        //Si no es valido, retorna a la pantalla de creacion con los datos cargados.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearEstado(EstadoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Estado estado = new Estado()
+                {
+                    Estado1 = model.Estado1
+                };
+
+                _context.Add(estado);
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(IndexEstado));
+            }
+
+            return View(model);
+        }
+
+
+
+        //Pantalla para editar Estados, cargando el estado que se desea editar.
+        public IActionResult EditarEstado(int Id)
+        {
+            var tEstado = _context.Estados.Find(Id);
+
+            EstadoViewModel model = new EstadoViewModel();
+            model.IdEstado = tEstado.IdEstado;
+            model.Estado1 = tEstado.Estado1;
+
+            return View(model);
+        }
+
+
+
+        //Si el Formulario es valido, edita el Estado a la BD
+        //Si no es valido, retorna a la pantalla de edición con los datos cargados.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditarEstado([Bind(include: "IdEstado, Estado1")] EstadoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var tEstado = _context.Estados.Find(model.IdEstado);
+
+                //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
+                tEstado.Estado1 = model.Estado1;
+
+                _context.Entry(tEstado).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(IndexEstado));
+            }
+            return View(model);
+        }
+
+
+
+        //Pantalla de confirmacion de eliminacion de Estado.
+        public IActionResult EliminarEstado(int Id)
+        {
+            EstadoViewModel model = new EstadoViewModel();
+
+            var tEstado = _context.Estados.Find(Id);
+
+            model.IdEstado = tEstado.IdEstado;
+            model.Estado1 = tEstado.Estado1;
+
+            return View(model);
+        }
+
+
+
+        //Eliminación de estado previa confirmación.
+        [HttpPost, ActionName("EliminarEstado")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EliminarEstadoConfirmado(int id)
+        {
+            var estado = await _context.Estados.FindAsync(id);
+            _context.Estados.Remove(estado);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(IndexEstado));
         }
     }
 }

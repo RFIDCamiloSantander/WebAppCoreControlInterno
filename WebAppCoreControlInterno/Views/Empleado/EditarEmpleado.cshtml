@@ -7,10 +7,26 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Editar Empleado</h1>
-                    <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor(c => c.Rut)</div>
+                    <div class="card-subtitle text-muted mb-3">Rut: @Html.DisplayFor(c => c.Rut)</div>
                     <form asp-action="EditarEmpleado">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @Html.HiddenFor(c => c.IdEmpleado)
+                        @*@Html.HiddenFor(c => c.IdEmpleado)*@
+                        <input type="hidden" asp-for="IdEmpleado" />
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Rut" class="form-label"></label>
+                                    <input asp-for="Rut" class="form-control shadow-sm mb-3" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <label asp-for="Epc" class="form-label"></label>
+                                    <input asp-for="Epc" class="form-control shadow-sm mb-3" />
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div>
@@ -42,22 +58,6 @@
                                     <label asp-for="Apellido2" class="form-label"></label>
                                     <input asp-for="Apellido2" class="form-control shadow-sm mb-3" />
                                     <span asp-validation-for="Apellido2" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <div>
-                                    <label asp-for="Apellido1" class="form-label"></label>
-                                    <input asp-for="Apellido1" class="form-control shadow-sm mb-3" />
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div>
-                                    <label asp-for="Apellido2" class="form-label"></label>
-                                    <input asp-for="Apellido2" class="form-control shadow-sm mb-3" />
                                 </div>
                             </div>
                         </div>

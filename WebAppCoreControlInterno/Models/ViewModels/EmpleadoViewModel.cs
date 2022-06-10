@@ -8,7 +8,7 @@ namespace WebAppCoreControlInterno.Models.ViewModels
 {
     public class EmpleadoViewModel
     {
-        [Display(Name = "ID")]
+        
         public int IdEmpleado { get; set; }
         public string Rut { get; set; }
         [Required]

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
 using Newtonsoft.Json;
+using WebAppCoreControlInterno.Impinj;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -22,6 +23,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
+
         //Para obtener los datos de la Tabla Empleado
         public async Task<IActionResult> IndexEmpleado()
         {
@@ -30,13 +32,12 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para poblar el select
+        //Para poblar el select Cargo
         public IActionResult CrearEmpleado()
         {
             ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
             return View();
         }
-
 
         //Para crear empleados - por POST
         [HttpPost]
@@ -67,8 +68,28 @@ namespace WebAppCoreControlInterno.Controllers
                     return RedirectToAction(nameof(IndexEmpleado));
                 }
             }
-            ViewData["Cargos"] = new SelectList(_context.Empleados, "IdCargo", "Cargo1", model.FkIdCargo);
+            ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1", model.FkIdCargo);
             return View(model);
+        }
+
+
+        public IActionResult CrearEmpleadoConEpc()
+        {
+
+            //Reader r = new();
+            List<string> listaEpc = new Reader().CrearLectura().Result;
+
+            List<Tag> listaTags = new();
+            foreach (var epc in listaEpc)
+            {
+                Tag tag = new();
+                tag.Epc = epc;
+                listaTags.Add(tag);
+            }
+            ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
+            ViewData["EPCs"] = new SelectList(listaTags, "Epc", "Epc");
+            System.Diagnostics.Debug.WriteLine(JsonConvert.SerializeObject(_context.Cargos));
+            return View();
         }
 
 
@@ -79,6 +100,7 @@ namespace WebAppCoreControlInterno.Controllers
 
             var tEmpleado = _context.Empleados.Find(Id);
 
+            model.IdEmpleado = tEmpleado.IdEmpleado;
             model.Rut = tEmpleado.Rut;
             model.Nombre1 = tEmpleado.Nombre1;
             model.Nombre2 = tEmpleado.Nombre2;
@@ -88,7 +110,7 @@ namespace WebAppCoreControlInterno.Controllers
             model.Fotografia = tEmpleado.Fotografia;
             model.FkIdCargo = tEmpleado.FkIdCargo;
 
-            System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject( model ));
+            //System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject( model ));
 
             ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1", model.FkIdCargo );
 
@@ -96,23 +118,69 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
+        //[Bind(include: "IdCargo, Cargo1")]
         //Para editar Cargo.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Editar([Bind(include: "IdCargo, Cargo1")] CargoViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var tCargo = _context.Cargos.Find(model.IdCargo);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditarEmpleado( EmpleadoViewModel model )
+        {
+            if (ModelState.IsValid)
+            {
+                System.Diagnostics.Debug.WriteLine(JsonConvert.SerializeObject(model));
 
-        //        //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
-        //        tCargo.Cargo1 = model.Cargo1;
+                var tEmpleado = _context.Empleados.Find(model.IdEmpleado);
 
-        //        _context.Entry(tCargo).State = EntityState.Modified;
-        //        _context.SaveChanges();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(model);
-        //}
+                tEmpleado.Rut = model.Rut;
+                tEmpleado.Nombre1 = model.Nombre1;
+                tEmpleado.Nombre2 = model.Nombre2;
+                tEmpleado.Apellido1 = model.Apellido1;
+                tEmpleado.Apellido2 = model.Apellido2;
+                tEmpleado.Epc = model.Epc;
+                tEmpleado.Fotografia = model.Fotografia;
+                tEmpleado.FkIdCargo = model.FkIdCargo;
+                //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
+                System.Diagnostics.Debug.WriteLine("Si es Valido");
+
+                _context.Entry(tEmpleado).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(IndexEmpleado));
+            }
+            System.Diagnostics.Debug.WriteLine("No es Valido");
+            return View(model);
+        }
+
+
+
+        //Para confirmar eliminacion de Cargo.
+        public IActionResult EliminarEmpleado(int Id)
+        {
+            EmpleadoViewModel model = new();
+
+            var tEmpleado = _context.Empleados.Find(Id);
+
+            model.IdEmpleado = tEmpleado.IdEmpleado;
+            model.Rut = tEmpleado.Rut;
+            model.Nombre1 = tEmpleado.Nombre1;
+            model.Nombre2 = tEmpleado.Nombre2;
+            model.Apellido1 = tEmpleado.Apellido1;
+            model.Apellido2 = tEmpleado.Apellido2;
+            model.Epc = tEmpleado.Epc;
+            model.Fotografia = tEmpleado.Fotografia;
+            model.FkIdCargo = tEmpleado.FkIdCargo;
+
+            return View(model);
+        }
+
+
+        //Para eliminar Cargo.
+        [HttpPost, ActionName("Eliminar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EliminarConfirmado(int id)
+        {
+            var cargo = await _context.Cargos.FindAsync(id);
+            _context.Cargos.Remove(cargo);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

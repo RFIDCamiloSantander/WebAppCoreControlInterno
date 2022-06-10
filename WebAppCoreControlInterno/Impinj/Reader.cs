@@ -200,7 +200,6 @@ namespace WebAppCoreControlInterno.Impinj
                     Console.WriteLine("EPC : {0} Timestamp : {1}", tag.Epc, tag.LastSeenTime);
                     System.Diagnostics.Debug.WriteLine("EPC normal: {0} - EPC Hex: {1}", tag.Epc, tag.Epc.ToHexString());
                     //System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(tag) );
-                    
                 }
             }
         }

@@ -1,0 +1,28 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels;
+@model EstadoViewModel
+
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Editar Estado</h1>
+                    <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor(m => m.IdEstado)</div>
+                    <form asp-action="EditarEstado">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.HiddenFor(c => c.IdEstado)
+                        <div>
+                            <label asp-for="Estado1" class="form-label"></label>
+                            <input asp-for="Estado1" class="form-control shadow-sm mb-3" />
+                            <div class="row text-end">
+                                <div class="col">
+                                    <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
