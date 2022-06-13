@@ -1,0 +1,81 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model EmpleadoViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Empleado";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Eliminar</h1>
+                    <h3>Seguro desea eliminar este Empleado?</h3>
+                    <div>
+                        <hr />
+                        <dl class="row">
+                            <dt class="">
+                                @Html.DisplayNameFor(model => model.Rut)
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Rut)
+                            </dd>
+                        </dl>
+
+                        <dl class="row">
+                            <dt class="">
+                                Nombres
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Nombre1) @Html.DisplayFor(m => m.Nombre2)
+                            </dd>
+                        </dl>
+
+                        <dl class="row">
+                            <dt class="">
+                                Apellidos
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Apellido1) @Html.DisplayFor(m => m.Apellido2)
+                            </dd>
+                        </dl>
+
+                        <dl class="row">
+                            <dt class="">
+                                @Html.DisplayNameFor(model => model.Epc)
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Epc)
+                            </dd>
+                        </dl>
+
+                        <dl class="row">
+                            <dt class="">
+                                @Html.DisplayNameFor(model => model.FkIdCargo)
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.FkIdCargo)
+                            </dd>
+                        </dl>
+
+                        <dl class="row">
+                            <dt class="">
+                                @Html.DisplayNameFor(model => model.Fotografia)
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Fotografia)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="Eliminar">
+                            <input type="hidden" asp-for="IdEmpleado" />
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <a class="btn btn-primary" asp-action="IndexEmpleado">Volver a la Lista</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

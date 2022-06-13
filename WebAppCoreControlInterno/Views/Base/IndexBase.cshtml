@@ -1,6 +1,40 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels
-@model BaseViewModel
+﻿@model List<Base>
 
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Elementos Base</h1>
+        </div>
+        <div class="col text-end">
+            <a asp-action="CrearBase" class="btn btn-primary">Crear</a>
+        </div>
+    </div>
+</div>
 <div class="container">
-    <div class="row"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sku</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bases in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => bases.Sku)</td>
+                    <td>@Html.DisplayFor(m => bases.Nombre)</td>
+                    <td>@Html.DisplayFor(m => bases.Descripcion)</td>
+                    <td>@Html.DisplayFor(m => bases.FkIdCategoria)</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="EditarBase/@bases.IdBase">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="EliminarBase/@bases.IdBase">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

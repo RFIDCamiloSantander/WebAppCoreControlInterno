@@ -93,7 +93,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para mostrar el Cargo a editar.
+        //Para mostrar el Empleado a editar.
         public IActionResult EditarEmpleado(int Id)
         {
             EmpleadoViewModel model = new EmpleadoViewModel();
@@ -151,7 +151,7 @@ namespace WebAppCoreControlInterno.Controllers
 
 
 
-        //Para confirmar eliminacion de Cargo.
+        //Para confirmar eliminacion de Empleado.
         public IActionResult EliminarEmpleado(int Id)
         {
             EmpleadoViewModel model = new();
@@ -172,8 +172,8 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para eliminar Cargo.
-        [HttpPost, ActionName("Eliminar")]
+        //Para eliminar Empleado.
+        [HttpPost, ActionName("EliminarEmpleado")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminarConfirmado(int id)
         {
