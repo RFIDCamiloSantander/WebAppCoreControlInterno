@@ -1,17 +1,17 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model BaseViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model SubSectorViewModel
 
 <div class="container mt-5 mb-3">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
             <div class="card shadow">
                 <div class="card-body">
-                    <h1 class="card-title">Editar ElementoBase</h1>
-                    <div class="card-subtitle text-muted mb-3">Id: @Html.DisplayFor(m => m.IdBase)</div>
-                    <form asp-action="EditarBase">
+                    <h1 class="card-title">Editar SubSector</h1>
+                    <div class="card-subtitle text-muted mb-3">Id: @Html.DisplayFor(c => c.IdSubSector)</div>
+                    <form asp-action="EditarSubSector">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @Html.HiddenFor(m => m.IdBase)
-
+                        @*@Html.HiddenFor(c => c.IdEmpleado)*@
+                        <input type="hidden" asp-for="IdSubSector" />
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div>
@@ -22,9 +22,9 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div>
-                                    <label asp-for="Sku" class="form-label"></label>
-                                    <input asp-for="Sku" class="form-control shadow-sm mb-3" />
-                                    <span asp-validation-for="Sku" class="text-danger"></span>
+                                    <label asp-for="Epc" class="form-label"></label>
+                                    <input asp-for="Epc" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -32,9 +32,9 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div>
-                                    <label asp-for="FkIdCategoria" class="form-label"></label>
-                                    <input asp-for="FkIdCategoria" class="form-control shadow-sm mb-3" />
-                                    <span asp-validation-for="FkIdCategoria" class="text-danger"></span>
+                                    <label asp-for="FkIdSector" class="form-label"></label>
+                                    <input asp-for="FkIdSector" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="FkIdSector" class="text-danger"></span>
 
                                 </div>
                             </div>
@@ -52,7 +52,6 @@
                                 <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

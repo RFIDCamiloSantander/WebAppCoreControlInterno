@@ -1,0 +1,91 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model SucursalViewModel
+
+
+@{/*Vista de Sucursales*/}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Crear Sucursal</h1>
+
+                    <form asp-action="CrearSucursal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Nombre" class="form-label"></label>
+                                    <input asp-for="Nombre" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Direccion" class="form-label"></label>
+                                    <input asp-for="Direccion" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Region" class="form-label"></label>
+                                    <input asp-for="Region" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Region" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Comuna" class="form-label"></label>
+                                    <input asp-for="Comuna" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Comuna" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="CoordenadaX" class="form-label"></label>
+                                    <input asp-for="CoordenadaX" class="form-control shadow-sm" />
+                                    <span asp-validation-for="CoordenadaX" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="CoordenadaY" class="form-label"></label>
+                                    <input asp-for="CoordenadaY" class="form-control shadow-sm" />
+                                    <span asp-validation-for="CoordenadaY" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Epc" class="form-label"></label>
+                                    <select asp-for="Epc" class="form-control shadow-sm">
+                                        <option>EPC</option>
+                                    </select>
+                                    <span asp-validation-for="Epc" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row text-end">
+                            <div class="col">
+                                <button type="submit" value="Crear" class="btn btn-primary btn-lg shadow-sm">Crear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

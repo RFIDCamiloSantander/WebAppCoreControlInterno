@@ -1,5 +1,5 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model EmpleadoViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model EmpleadoViewModel
 
 <div class="container mt-5 mb-3">
     <div class="row justify-content-center">
@@ -17,12 +17,14 @@
                                 <div>
                                     <label asp-for="Rut" class="form-label"></label>
                                     <input asp-for="Rut" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Rut" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div>
                                     <label asp-for="Epc" class="form-label"></label>
                                     <input asp-for="Epc" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +35,6 @@
                                     <label asp-for="Nombre1" class="form-label"></label>
                                     <input asp-for="Nombre1" class="form-control shadow-sm mb-3" />
                                     <span asp-validation-for="Nombre1" class="text-danger"></span>
-
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -66,7 +67,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdCargo" class="form-label"></label>
-                                    <select asp-for="FkIdCargo" asp-items="ViewBag.Cargos" class="form-control">
+                                    <select asp-for="FkIdCargo" asp-items="ViewBag.Cargos" class="form-control shadow-sm">
                                         <option>Cargo</option>
                                     </select>
                                     <span asp-validation-for="FkIdCargo" class="text-danger"></span>
@@ -75,7 +76,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Fotografia" class="form-label"></label>
-                                    <input asp-for="Fotografia" class="form-control" />
+                                    <input asp-for="Fotografia" class="form-control shadow-sm" />
                                     <span asp-validation-for="Fotografia" class="text-danger"></span>
                                 </div>
                             </div>

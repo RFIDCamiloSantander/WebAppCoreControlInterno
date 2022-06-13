@@ -1,17 +1,17 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model BaseViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model SectorViewModel
 
 <div class="container mt-5 mb-3">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
             <div class="card shadow">
                 <div class="card-body">
-                    <h1 class="card-title">Editar ElementoBase</h1>
-                    <div class="card-subtitle text-muted mb-3">Id: @Html.DisplayFor(m => m.IdBase)</div>
-                    <form asp-action="EditarBase">
+                    <h1 class="card-title">Editar Sector</h1>
+                    <div class="card-subtitle text-muted mb-3">Id: @Html.DisplayFor(c => c.IdSector)</div>
+                    <form asp-action="EditarSector">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @Html.HiddenFor(m => m.IdBase)
-
+                        @*@Html.HiddenFor(c => c.IdEmpleado)*@
+                        <input type="hidden" asp-for="IdSector" />
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div>
@@ -22,23 +22,15 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div>
-                                    <label asp-for="Sku" class="form-label"></label>
-                                    <input asp-for="Sku" class="form-control shadow-sm mb-3" />
-                                    <span asp-validation-for="Sku" class="text-danger"></span>
+                                    <label asp-for="FkIdSucursal" class="form-label"></label>
+                                    <input asp-for="FkIdSucursal" class="form-control shadow-sm mb-3" />
+                                    <span asp-validation-for="FkIdSucursal" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-12 col-md-6">
-                                <div>
-                                    <label asp-for="FkIdCategoria" class="form-label"></label>
-                                    <input asp-for="FkIdCategoria" class="form-control shadow-sm mb-3" />
-                                    <span asp-validation-for="FkIdCategoria" class="text-danger"></span>
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12">
                                 <div>
                                     <label asp-for="Descripcion" class="form-label"></label>
                                     <input asp-for="Descripcion" class="form-control shadow-sm mb-3" />
@@ -52,7 +44,6 @@
                                 <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

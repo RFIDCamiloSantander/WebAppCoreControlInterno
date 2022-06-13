@@ -1,0 +1,52 @@
+﻿@model List<Sucursal>
+
+@{
+    Func<dynamic, object> sucursalTemplate =
+    @<tr>
+        <td>@item.Nombre</td>
+        <td>@item.Direccion</td>
+        <td>@item.Region</td>
+        <td>@item.Comuna</td>
+        <td>@item.Epc</td>
+        <td>@item.CoordenadaX</td>
+        <td>@item.CoordenadaY</td>
+        <td>
+            <a class="btn btn-primary" href="EditarSucursal/@item.IdSucursal">Editar</a>
+            <a class="btn btn-danger" href="EliminarSucursal/@item.IdSucursal">Eliminar</a>
+        </td>
+    </tr>;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Sucursales</h1>
+        </div>
+        <div class="col text-end">
+            <a asp-action="CrearSucursal" class="btn btn-primary">Crear</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Region</th>
+                <th>Comuna</th>
+                <th>Epc</th>
+                <th>CoordenadaX</th>
+                <th>CoordenadaY</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sucursal in Model)
+            {
+                @sucursalTemplate(sucursal)
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,64 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model SubSectorViewModel
+
+
+@{/*Vista de SubSectores*/}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Crear SubSector</h1>
+
+                    <form asp-action="CrearSubSector">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Nombre" class="form-label"></label>
+                                    <input asp-for="Nombre" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Epc" class="form-label"></label>
+                                    <input asp-for="Epc" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Epc" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdSector" class="form-label"></label>
+                                    <input asp-for="FkIdSector" class="form-control shadow-sm" />
+                                    <span asp-validation-for="FkIdSector" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Descripcion" class="form-label"></label>
+                                    <input asp-for="Descripcion" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row text-end">
+                            <div class="col">
+                                <button type="submit" value="Crear" class="btn btn-primary btn-lg shadow-sm">Crear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
