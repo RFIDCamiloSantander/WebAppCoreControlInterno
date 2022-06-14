@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
+using WebAppCoreControlInterno.Models.ViewModels;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -45,12 +46,13 @@ namespace WebAppCoreControlInterno.Controllers
         {
             if (ModelState.IsValid)
             {
-                SubSector subSector = new()
+                Lector lector = new()
                 {
-                    Nombre = model.Nombre,
+                    Mac = model.Mac                     ,
                     Descripcion = model.Descripcion,
-                    Epc = model.Epc,
-                    FkIdSector = model.FkIdSector,
+                    Ip = model.Ip,
+                    NroSerie = model.NroSerie,
+                    NroParte = model.NroParte,
                     Custom1 = model.Custom1,
                     Custom2 = model.Custom2,
                     Custom3 = model.Custom3,
