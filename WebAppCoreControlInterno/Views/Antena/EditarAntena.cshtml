@@ -1,0 +1,61 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model AntenaViewModel
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Editar Antena</h1>
+                    <div class="card-subtitle text-muted mb-3">Id: @Html.DisplayFor(c => c.IdAntena)</div>
+                    <form asp-action="EditarAntena">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @*@Html.HiddenFor(c => c.IdEmpleado)*@
+                        <input type="hidden" asp-for="IdAntena" />
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Antena1" class="form-label"></label>
+                                    <input asp-for="Antena1" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Antena1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdSector" class="form-label"></label>
+                                    <input asp-for="FkIdSector" class="form-control shadow-sm" />
+                                    <span asp-validation-for="FkIdSector" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdSubSector" class="form-label"></label>
+                                    <input asp-for="FkIdSubSector" class="form-control shadow-sm" />
+                                    <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdLector" class="form-label"></label>
+                                    <input asp-for="FkIdLector" class="form-control shadow-sm" />
+                                    <span asp-validation-for="FkIdLector" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-end">
+                            <div class="col">
+                                <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

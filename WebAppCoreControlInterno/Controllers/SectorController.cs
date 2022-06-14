@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexSector()
         {
-            return View( await _context.Sectors.ToListAsync());
+            var sectores = _context.Sectors.Include(b => b.FkIdSucursalNavigation);
+            return View( await sectores.ToListAsync());
         }
 
 
@@ -34,6 +36,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista para Crear.
         public IActionResult CrearSector()
         {
+            ViewBag.Cargos = new SelectList(_context.Sucursals, "IdSucursal", "Nombre");
             return View();
         }
 
@@ -59,6 +62,7 @@ namespace WebAppCoreControlInterno.Controllers
 
                 return RedirectToAction(nameof(IndexSector));
             }
+            ViewData["Sucursals"] = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
             return View(model);
         }
 
@@ -76,6 +80,9 @@ namespace WebAppCoreControlInterno.Controllers
                 Descripcion = sector.Descripcion,
                 FkIdSucursal = sector.FkIdSucursal,
             };
+
+            ViewData["Sucursals"] = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
+
             return View(model);
         }
 

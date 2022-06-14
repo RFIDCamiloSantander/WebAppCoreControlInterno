@@ -1,7 +1,7 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
-@model SucursalViewModel
+@model LectorViewModel
 
-@{ViewBag.Title = "Eliminar Sucursal";}
+@{ViewBag.Title = "Eliminar Lector";}
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
@@ -11,76 +11,76 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar esta Sucursal?</h3>
+                    <h3>Seguro desea eliminar este Lector?</h3>
                     <div>
                         <hr />
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Nombre)
+                                @Html.DisplayNameFor(model => model.Mac)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Nombre)
+                                @Html.DisplayFor(model => model.Mac)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(m => m.Direccion)
+                                @Html.DisplayFor(m => m.Ip)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Direccion)
+                                @Html.DisplayFor(model => model.Ip)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(model => model.Region)
+                                @Html.DisplayFor(model => model.NroSerie)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Region)
+                                @Html.DisplayFor(model => model.NroSerie)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Comuna)
+                                @Html.DisplayFor(model => model.NroParte)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Comuna)
+                                @Html.DisplayFor(model => model.NroParte)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Epc)
+                                @Html.DisplayFor(model => model.Marca)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Epc)
+                                @Html.DisplayFor(model => model.Marca)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.CoordenadaX)
+                                @Html.DisplayFor(model => model.Modelo)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.CoordenadaX)
+                                @Html.DisplayFor(model => model.Modelo)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.CoordenadaY)
+                                @Html.DisplayFor(model => model.FkIdSucursal)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.CoordenadaY)
+                                @Html.DisplayFor(model => model.FkIdSucursal)
                             </dd>
                         </dl>
 
-                        <form asp-action="EliminarSucursal">
-                            <input type="hidden" asp-for="IdSucursal" />
+                        <form asp-action="EliminarLector">
+                            <input type="hidden" asp-for="IdLector" />
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="IndexSucursal">Volver a la Lista</a>
+                            <a class="btn btn-primary" asp-action="IndexLector">Volver a la Lista</a>
                         </form>
                     </div>
                 </div>

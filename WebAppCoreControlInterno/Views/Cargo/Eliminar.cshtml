@@ -1,9 +1,9 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels;
 @model CargoViewModel;
 
-@{
-    ViewData["Title"] = "Eliminar Cargo";
-}
+@{ViewBag.Title = "Eliminar Cargo";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
 
 <div class="container">
     <div class="row justify-content-center mt-5">

@@ -1,12 +1,16 @@
 ﻿@model List<Sector>
 
+@{ViewBag.Title = "Lista Sectores";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
 @{
     Func<dynamic, object> sectorTemplate =
     @<tr>
         <td class="align-middle">@item.Nombre</td>
         <td class="align-middle">@item.Descripcion</td>
-        <td class="align-middle text-center">@item.FkIdSucursal</td>
-        <td class="align-middle">
+        <td class="align-middle">@item.FkIdSucursalNavigation.Nombre</td>
+        <td class="align-middle text-end">
             <a class="btn btn-primary btn-sm" href="EditarSector/@item.IdSector">Editar</a>
             <a class="btn btn-danger btn-sm" href="EliminarSector/@item.IdSector">Eliminar</a>
         </td>

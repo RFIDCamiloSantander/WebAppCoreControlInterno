@@ -1,6 +1,9 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
 @model SucursalViewModel
 
+@{ViewBag.Title = "Crear Sucursal";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
 
 @{/*Vista de Sucursales*/}
 <div class="container mt-5">
@@ -70,7 +73,7 @@
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="row text-end">
                             <div class="col">

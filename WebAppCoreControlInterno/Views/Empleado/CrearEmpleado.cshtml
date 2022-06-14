@@ -2,20 +2,24 @@
 @model EmpleadoViewModel
 @using WebAppCoreControlInterno.Impinj
 
+@{ViewBag.Title = "Crear Empleado";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
 @*@{
-    List<string> listaEpc = null;
+        List<string> listaEpc = null;
 
-    void leer() {
-        Reader r = new();
-        listaEpc = r.CrearLectura().Result;
-        //System.Diagnostics.Debug.WriteLine(listaEpc);
-    }
+        void leer() {
+            Reader r = new();
+            listaEpc = r.CrearLectura().Result;
+            //System.Diagnostics.Debug.WriteLine(listaEpc);
+        }
 
-    async Task OnPostLeer()
-    {
-        leer();
-    }
-}*@
+        async Task OnPostLeer()
+        {
+            leer();
+        }
+    }*@
 
 @{/*Vista de empleados*/}
 <div class="container mt-5 mb-3">
@@ -46,12 +50,12 @@
                                             EPC
                                         </option>
                                         @*@if (listaEpc != null)
-                                        {
-                                            foreach (string epc in listaEpc)
                                             {
-		                                        <option value="@epc">@epc</option>
-	                                        }
-                                        }*@
+                                                foreach (string epc in listaEpc)
+                                                {
+                                                    <option value="@epc">@epc</option>
+                                                }
+                                            }*@
                                     </select>
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
@@ -120,7 +124,7 @@
 </div>
 
 @section Scripts{
-    @{ 
+    @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

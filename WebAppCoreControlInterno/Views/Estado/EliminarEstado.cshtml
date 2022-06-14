@@ -1,9 +1,9 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model EstadoViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model EstadoViewModel
 
-@{
-    ViewData["Title"] = "Eliminar Estado";
-}
+@{ViewBag.Title = "Eliminar Estado";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
 
 <div class="container">
     <div class="row justify-content-center mt-5">
@@ -24,7 +24,7 @@
                         </dl>
 
                         <form asp-action="EliminarEstado">
-                            @Html.HiddenFor( m => m.IdEstado )
+                            @Html.HiddenFor(m => m.IdEstado)
                             @*<input type="hidden" asp-for="IdEstado" />*@
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
                             <a class="btn btn-primary" asp-action="IndexEstado">Volver a la Lista</a>

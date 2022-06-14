@@ -1,5 +1,9 @@
 ﻿@model List<Cargo>
 
+@{ViewBag.Title = "Lista Cargos";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
 @{
     Func<dynamic, object> cargoTemplate =
     @<tr>

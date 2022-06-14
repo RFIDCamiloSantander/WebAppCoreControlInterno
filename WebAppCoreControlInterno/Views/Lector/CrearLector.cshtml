@@ -1,0 +1,104 @@
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model LectorViewModel
+
+@{ViewBag.Title = "Crear Lector";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
+@{/*Vista para crear Lector*/}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title">Crear Lector</h1>
+
+                    <form asp-action="CrearLector">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Mac" class="form-label"></label>
+                                    <input asp-for="Mac" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Mac" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Ip" class="form-label"></label>
+                                    <input asp-for="Ip" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Ip" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="NroSerie" class="form-label"></label>
+                                    <input asp-for="NroSerie" class="form-control shadow-sm" />
+                                    <span asp-validation-for="NroSerie" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="NroParte" class="form-label"></label>
+                                    <input asp-for="NroParte" class="form-control shadow-sm" />
+                                    <span asp-validation-for="NroParte" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Marca" class="form-label"></label>
+                                    <input asp-for="Marca" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Marca" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Modelo" class="form-label"></label>
+                                    <input asp-for="Modelo" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="FkIdSucursal" class="form-label"></label>
+                                    <input asp-for="FkIdSucursal" class="form-control shadow-sm" />
+                                    <span asp-validation-for="FkIdSucursal" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="Descripcion" class="form-label"></label>
+                                    <input asp-for="Descripcion" class="form-control shadow-sm" />
+                                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-end">
+                            <div class="col">
+                                <button type="submit" value="Crear" class="btn btn-primary btn-lg shadow-sm">Crear</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

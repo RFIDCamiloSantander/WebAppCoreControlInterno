@@ -1,7 +1,7 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
-@model SectorViewModel
+@model ElementoViewModel
 
-@{ViewBag.Title = "Eliminar Sector";}
+@{ViewBag.Title = "Crear Elemento";}
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
@@ -11,40 +11,49 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar esta Sucursal?</h3>
+                    <h3>Seguro desea eliminar esta Elemento?</h3>
                     <div>
                         <hr />
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Nombre)
+                                @Html.DisplayNameFor(model => model.Epc)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Nombre)
+                                @Html.DisplayFor(model => model.Epc)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(m => m.FkIdSucursal)
+                                @Html.DisplayFor(m => m.NroSerie)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.FkIdSucursal)
+                                @Html.DisplayFor(model => model.NroSerie)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(model => model.Descripcion)
+                                @Html.DisplayFor(model => model.NroParte)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Descripcion)
+                                @Html.DisplayFor(model => model.NroParte)
                             </dd>
                         </dl>
 
-                        <form asp-action="EliminarSector">
-                            <input type="hidden" asp-for="IdSector" />
+                        <dl class="row">
+                            <dt class="col-12 col-md-4">
+                                @Html.DisplayNameFor(model => model.Fotografia)
+                            </dt>
+                            <dd class="col-12 col-md-8">
+                                @Html.DisplayFor(model => model.Fotografia)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="EliminarElemento">
+                            <input type="hidden" asp-for="IdElemento" />
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="IndexSector">Volver a la Lista</a>
+                            <a class="btn btn-primary" asp-action="IndexElemento">Volver a la Lista</a>
                         </form>
                     </div>
                 </div>

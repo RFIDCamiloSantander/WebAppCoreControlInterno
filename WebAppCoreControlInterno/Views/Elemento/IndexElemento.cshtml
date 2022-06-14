@@ -1,4 +1,8 @@
-﻿@model List<Elemento>;
+﻿@model List<Elemento>
+
+@{ViewBag.Title = "Lista Elementos";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
 
 <div class="container mt-5">
     <div class="row">
@@ -39,30 +43,30 @@
         <tbody>
             @foreach (var elemento in Model)
             {
-            <tr>
-                <td>@Html.DisplayFor(m => elemento.Epc)</td>
-                <td>@Html.DisplayFor(m => elemento.FechaIngreso)</td>
-                <td>@Html.DisplayFor(m => elemento.FechaUltimaLectura)</td>
-                <td>@Html.DisplayFor(m => elemento.Dimension)</td>
-                <td>@Html.DisplayFor(m => elemento.PesoKg)</td>
-                <td>@Html.DisplayFor(m => elemento.NroSerie)</td>
-                <td>@Html.DisplayFor(m => elemento.NroParte)</td>
-                <td>@Html.DisplayFor(m => elemento.InformacionExtra)</td>
-                <td>@Html.DisplayFor(m => elemento.Fotografia)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdElementoBase)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdEstado)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdSucursal)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdSector)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdSubSector)</td>
-                <td>@Html.DisplayFor(m => elemento.FkIdEmpleadoEncargado)</td>
-                <td>
-                    <a class="btn btn-primary" href="Cargo/Editar/@elemento.IdElemento">Editar</a>
-                    @*Distintas Formas de lograr lo mismo*@
-                    @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
-                    @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
-                    <a class="btn btn-danger" href="Cargo/Eliminar/@elemento.IdElemento">Eliminar</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@Html.DisplayFor(m => elemento.Epc)</td>
+                    <td>@Html.DisplayFor(m => elemento.FechaIngreso)</td>
+                    <td>@Html.DisplayFor(m => elemento.FechaUltimaLectura)</td>
+                    <td>@Html.DisplayFor(m => elemento.Dimension)</td>
+                    <td>@Html.DisplayFor(m => elemento.PesoKg)</td>
+                    <td>@Html.DisplayFor(m => elemento.NroSerie)</td>
+                    <td>@Html.DisplayFor(m => elemento.NroParte)</td>
+                    <td>@Html.DisplayFor(m => elemento.InformacionExtra)</td>
+                    <td>@Html.DisplayFor(m => elemento.Fotografia)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdElementoBase)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdEstado)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdSucursal)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdSector)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdSubSector)</td>
+                    <td>@Html.DisplayFor(m => elemento.FkIdEmpleadoEncargado)</td>
+                    <td>
+                        <a class="btn btn-primary" href="EditarElemento/@elemento.IdElemento">Editar</a>
+                        @*Distintas Formas de lograr lo mismo*@
+                        @*Este Funca  --  <a class="btn btn-primary" asp-controller="Cargo" asp-action="Editar" asp-route-id="1">Editar</a>*@
+                        @*Este Funca  --  @Html.ActionLink("Editar", "Editar", new { id = cargo.IdCargo })*@
+                        <a class="btn btn-danger" href="EliminarElemento/@elemento.IdElemento">Eliminar</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

@@ -48,21 +48,24 @@ namespace WebAppCoreControlInterno.Controllers
             {
                 Lector lector = new()
                 {
-                    Mac = model.Mac                     ,
+                    Mac = model.Modelo,
                     Descripcion = model.Descripcion,
                     Ip = model.Ip,
                     NroSerie = model.NroSerie,
                     NroParte = model.NroParte,
+                    Marca = model.Marca,
+                    Modelo = model.Modelo,
+                    FkIdSucursal = model.FkIdSucursal,
                     Custom1 = model.Custom1,
                     Custom2 = model.Custom2,
                     Custom3 = model.Custom3,
                 };
 
-                _context.Add(subSector);
+                _context.Add(lector);
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(IndexSubSector));
+                return RedirectToAction(nameof(IndexLector));
             }
             return View(model);
         }
@@ -70,20 +73,23 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar el Cargo a editar.
-        public IActionResult EditarSubSector(int Id)
+        public IActionResult EditarLector(int Id)
         {
-            SubSector subSector = _context.SubSectors.Find(Id);
+            Lector lector = _context.Lectors.Find(Id);
 
-            SubSectorViewModel model = new()
+            LectorViewModel model = new()
             {
-                IdSubSector = subSector.IdSubSector,
-                Nombre = subSector.Nombre,
-                Descripcion = subSector.Descripcion,
-                Epc = subSector.Epc,
-                FkIdSector = subSector.FkIdSector,
-                Custom1 = subSector.Custom1,
-                Custom2 = subSector.Custom2,
-                Custom3 = subSector.Custom3,
+                Mac = lector.Modelo,
+                Descripcion = lector.Descripcion,
+                Ip = lector.Ip,
+                NroSerie = lector.NroSerie,
+                NroParte = lector.NroParte,
+                Marca = lector.Marca,
+                Modelo = lector.Modelo,
+                FkIdSucursal = lector.FkIdSucursal,
+                Custom1 = lector.Custom1,
+                Custom2 = lector.Custom2,
+                Custom3 = lector.Custom3,
             };
 
             return View(model);
@@ -94,21 +100,28 @@ namespace WebAppCoreControlInterno.Controllers
         //Para editar SubSector.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarSubSector([Bind(include: "IdSubSector, Nombre, Descripcion, Epc, FkIdSector")] SubSectorViewModel model)
+        public IActionResult EditarLector([Bind(include: "IdLector, Mac, Descripcion, Ip, NroSerie, NroParte, Marca, Modelo, FkIdSucursal, Custom1, Custom2, Custom3")] LectorViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var subSector = _context.SubSectors.Find(model.IdSubSector);
+                var lector = _context.Lectors.Find(model.IdLector);
 
                 //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
-                subSector.Nombre = model.Nombre;
-                subSector.Descripcion = model.Descripcion;
-                subSector.Epc = model.Epc;
-                subSector.FkIdSector = model.FkIdSector;
+                lector.Mac = model.Mac;
+                lector.Descripcion = model.Descripcion;
+                lector.Ip = model.Ip;
+                lector.NroSerie = model.NroSerie;
+                lector.NroParte = model.NroParte;
+                lector.Marca = model.Marca;
+                lector.Modelo = model.Modelo;
+                lector.FkIdSucursal = model.FkIdSucursal;
+                lector.Custom1 = model.Custom1;
+                lector.Custom2 = model.Custom2;
+                lector.Custom3 = model.Custom3;
 
-                _context.Entry(subSector).State = EntityState.Modified;
+                _context.Entry(lector).State = EntityState.Modified;
                 _context.SaveChanges();
-                return RedirectToAction(nameof(IndexSubSector));
+                return RedirectToAction(nameof(IndexLector));
             }
             return View(model);
         }
@@ -116,17 +129,24 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para confirmar eliminacion de SubSector.
-        public IActionResult EliminarSubSector(int Id)
+        public IActionResult EliminarLector(int Id)
         {
-            var subSector = _context.SubSectors.Find(Id);
+            var lector = _context.Lectors.Find(Id);
 
-            SubSectorViewModel model = new()
+            LectorViewModel model = new()
             {
-                IdSubSector = subSector.IdSubSector,
-                Nombre = subSector.Nombre,
-                Descripcion = subSector.Descripcion,
-                Epc = subSector.Epc,
-                FkIdSector = subSector.FkIdSector,
+                IdLector = lector.IdLector,
+                Mac = lector.Modelo,
+                Descripcion = lector.Descripcion,
+                Ip = lector.Ip,
+                NroSerie = lector.NroSerie,
+                NroParte = lector.NroParte,
+                Marca = lector.Marca,
+                Modelo = lector.Modelo,
+                FkIdSucursal = lector.FkIdSucursal,
+                Custom1 = lector.Custom1,
+                Custom2 = lector.Custom2,
+                Custom3 = lector.Custom3,
             };
 
             return View(model);
@@ -135,14 +155,14 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para eliminar Cargo.
-        [HttpPost, ActionName("EliminarSubSector")]
+        [HttpPost, ActionName("EliminarLector")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminarConfirmado(int id)
         {
-            var subSector = await _context.SubSectors.FindAsync(id);
-            _context.SubSectors.Remove(subSector);
+            var lector = await _context.Lectors.FindAsync(id);
+            _context.Lectors.Remove(lector);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(IndexSubSector));
+            return RedirectToAction(nameof(IndexLector));
         }
     }
 }

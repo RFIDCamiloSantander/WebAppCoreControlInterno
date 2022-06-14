@@ -1,5 +1,9 @@
-﻿@using WebAppCoreControlInterno.Models.ViewModels;
-@model CargoViewModel;
+﻿@using WebAppCoreControlInterno.Models.ViewModels
+@model CargoViewModel
+
+@{ViewBag.Title = "Editar Cargo";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
 
 <div class="container mt-5 mb-3">
     <div class="row justify-content-center">
@@ -7,7 +11,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Editar Cargo</h1>
-                    <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor( m => m.IdCargo )</div>
+                    <div class="card-subtitle text-muted mb-3">ID: @Html.DisplayFor(m => m.IdCargo)</div>
                     <form asp-action="Editar">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         @Html.HiddenFor(c => c.IdCargo)

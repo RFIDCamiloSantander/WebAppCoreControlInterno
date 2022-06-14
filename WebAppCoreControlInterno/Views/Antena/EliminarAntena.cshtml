@@ -1,7 +1,7 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
-@model SectorViewModel
+@model AntenaViewModel
 
-@{ViewBag.Title = "Eliminar Sector";}
+@ViewData["Title"] = "Eliminar Antena"
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
@@ -11,40 +11,49 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar esta Sucursal?</h3>
+                    <h3>Seguro desea eliminar esta <b>Antena</b>?</h3>
                     <div>
                         <hr />
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Nombre)
+                                @Html.DisplayNameFor(model => model.Antena1)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Nombre)
+                                @Html.DisplayFor(model => model.Antena1)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(m => m.FkIdSucursal)
+                                @Html.DisplayFor(m => m.FkIdSector)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.FkIdSucursal)
+                                @Html.DisplayFor(model => model.FkIdSector)
                             </dd>
                         </dl>
 
                         <dl class="row">
                             <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(model => model.Descripcion)
+                                @Html.DisplayFor(model => model.FkIdSubSector)
                             </dt>
                             <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Descripcion)
+                                @Html.DisplayFor(model => model.FkIdSubSector)
                             </dd>
                         </dl>
 
-                        <form asp-action="EliminarSector">
-                            <input type="hidden" asp-for="IdSector" />
+                        <dl class="row">
+                            <dt class="col-12 col-md-4">
+                                @Html.DisplayFor(model => model.FkIdLector)
+                            </dt>
+                            <dd class="col-12 col-md-8">
+                                @Html.DisplayFor(model => model.FkIdLector)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="EliminarAntena">
+                            <input type="hidden" asp-for="IdAntena" />
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="IndexSector">Volver a la Lista</a>
+                            <a class="btn btn-primary" asp-action="IndexAntena">Volver a la Lista</a>
                         </form>
                     </div>
                 </div>
