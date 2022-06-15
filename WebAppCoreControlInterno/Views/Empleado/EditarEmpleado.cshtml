@@ -5,10 +5,10 @@
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
-<div class="container mt-5 mb-3">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-            <div class="card shadow">
+            <div class="card shadow mb-4">
                 <div class="card-body">
                     <h1 class="card-title">Editar Empleado</h1>
                     <div class="card-subtitle text-muted mb-3">Rut: @Html.DisplayFor(c => c.Rut)</div>
@@ -16,11 +16,12 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         @*@Html.HiddenFor(c => c.IdEmpleado)*@
                         <input type="hidden" asp-for="IdEmpleado" />
+                        @Html.HiddenFor(e => e.Rut)
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div>
                                     <label asp-for="Rut" class="form-label"></label>
-                                    <input asp-for="Rut" class="form-control shadow-sm mb-3" />
+                                    <input asp-for="Rut" disabled class="form-control shadow-sm mb-3" />
                                     <span asp-validation-for="Rut" class="text-danger"></span>
                                 </div>
                             </div>
@@ -86,8 +87,11 @@
                             </div>
                         </div>
 
-                        <div class="row text-end">
+                        <div class="row">
                             <div class="col">
+                                <a asp-action="IndexEmpleado" class="btn btn-danger shadow-sm">Cancelar</a>
+                            </div>
+                            <div class="col text-end">
                                 <button type="submit" value="Editar" class="btn btn-primary shadow-sm">Editar</button>
                             </div>
                         </div>

@@ -139,13 +139,13 @@ namespace WebAppCoreControlInterno.Controllers
                 tEmpleado.Fotografia = model.Fotografia;
                 tEmpleado.FkIdCargo = model.FkIdCargo;
                 //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
-                System.Diagnostics.Debug.WriteLine("Si es Valido");
+                //System.Diagnostics.Debug.WriteLine("Si es Valido");
 
                 _context.Entry(tEmpleado).State = EntityState.Modified;
                 _context.SaveChanges();
                 return RedirectToAction(nameof(IndexEmpleado));
             }
-            System.Diagnostics.Debug.WriteLine("No es Valido");
+            //System.Diagnostics.Debug.WriteLine("No es Valido");
             return View(model);
         }
 

@@ -8,7 +8,7 @@ namespace WebAppCoreControlInterno.Models
     public partial class Antena
     {
         public int IdAntena { get; set; }
-        public byte Antena1 { get; set; }
+        public byte NumAntena { get; set; }
         public int? FkIdSector { get; set; }
         public int? FkIdSubSector { get; set; }
         public int FkIdLector { get; set; }

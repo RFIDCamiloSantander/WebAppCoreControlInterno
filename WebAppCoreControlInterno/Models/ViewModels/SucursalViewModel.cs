@@ -1,5 +1,6 @@
 ﻿using System;
     using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +17,16 @@ namespace WebAppCoreControlInterno.Models.ViewModels
         }
 
         public int IdSucursal { get; set; }
+
+        [Required(ErrorMessage = "El {0} es Requerido.")]
         public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "El {0} es Requerido.")]
+        [Display(Name = "Dirección")]
         public string Direccion { get; set; }
+
+        [Required(ErrorMessage = "El {0} es Requerido.")]
+        [Display(Name = "Región")]
         public string Region { get; set; }
         public string Comuna { get; set; }
         public string Epc { get; set; }

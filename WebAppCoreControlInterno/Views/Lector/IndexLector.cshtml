@@ -13,10 +13,10 @@
         <td class="align-middle">@item.NroParte</td>
         <td class="align-middle">@item.Marca</td>
         <td class="align-middle">@item.Modelo</td>
-        <td class="align-middle text-center">@item.FkIdSucursal</td>
+        <td class="align-middle">@item.FkIdSucursalNavigation.Nombre</td>
         <td class="align-middle">
-            <a class="btn btn-primary btn-sm" href="EditarSector/@item.IdSector">Editar</a>
-            <a class="btn btn-danger btn-sm" href="EliminarSector/@item.IdSector">Eliminar</a>
+            <a class="btn btn-primary btn-sm" href="EditarLector/@item.IdLector">Editar</a>
+            <a class="btn btn-danger btn-sm" href="EliminarLector/@item.IdLector">Eliminar</a>
         </td>
     </tr>;
 }
@@ -42,14 +42,17 @@
                 <th>NroParte</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-                <th>FkIdSucursal</th>
+                <th>Sucursal</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var lector in Model)
+            @if (Model != null)
             {
-                @lectorTemplate(lector)
+                @foreach (var lector in Model)
+                {
+                    @lectorTemplate(lector)
+                }
             }
         </tbody>
     </table>

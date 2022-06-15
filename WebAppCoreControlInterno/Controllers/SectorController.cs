@@ -36,7 +36,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista para Crear.
         public IActionResult CrearSector()
         {
-            ViewBag.Cargos = new SelectList(_context.Sucursals, "IdSucursal", "Nombre");
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre");
+            //System.Diagnostics.Debug.WriteLine("El viewBag" + ViewBag.Cargos );
             return View();
         }
 
@@ -47,6 +48,8 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearSector(SectorViewModel model)
         {
+            //System.Diagnostics.Debug.WriteLine("el viewbag");
+
             if (ModelState.IsValid)
             {
                 Sector sector = new()

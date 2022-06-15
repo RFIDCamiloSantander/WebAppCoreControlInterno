@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexAntena()
         {
-            return View(await _context.Antenas.ToListAsync());
+            return View(await _context.Antenas.Include(b => b.FkIdLectorNavigation).ToListAsync());
         }
 
 
@@ -34,6 +35,9 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista para Crear.
         public IActionResult CrearAntena()
         {
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre");
+            ViewBag.SubSectors = new SelectList(_context.SubSectors, "IdSubSector", "Nombre");
+            ViewBag.Lectors = new SelectList(_context.Lectors, "IdLector", "Mac");
             return View();
         }
 
@@ -48,7 +52,7 @@ namespace WebAppCoreControlInterno.Controllers
             {
                 Antena antena= new()
                 {
-                    Antena1 = model.Antena1,
+                    NumAntena = model.NumAntena,
                     FkIdSector = model.FkIdSector,
                     FkIdSubSector = model.FkIdSubSector,
                     FkIdLector = model.FkIdLector,
@@ -75,7 +79,7 @@ namespace WebAppCoreControlInterno.Controllers
 
             AntenaViewModel model = new()
             {
-                Antena1 = antena.Antena1,
+                NumAntena = antena.NumAntena,
                 FkIdSector = antena.FkIdSector,
                 FkIdSubSector = antena.FkIdSubSector,
                 FkIdLector = antena.FkIdLector,
@@ -99,7 +103,7 @@ namespace WebAppCoreControlInterno.Controllers
                 var antena = _context.Antenas.Find(model.IdAntena);
 
                 //System.Diagnostics.Debug.WriteLine(model.IdCargo + " - el id que llega");
-                antena.Antena1 = model.Antena1;
+                antena.NumAntena = model.NumAntena;
                 antena.FkIdSector = model.FkIdSector;
                 antena.FkIdSubSector = model.FkIdSubSector;
                 antena.FkIdLector = model.FkIdLector;
@@ -124,7 +128,7 @@ namespace WebAppCoreControlInterno.Controllers
             AntenaViewModel model = new()
             {
                 IdAntena = antena.IdAntena,
-                Antena1 = antena.Antena1,
+                NumAntena = antena.NumAntena,
                 FkIdSector = antena.FkIdSector,
                 FkIdSubSector = antena.FkIdSubSector,
                 FkIdLector = antena.FkIdLector,

@@ -15,7 +15,7 @@ namespace WebAppCoreControlInterno.Models.ViewModels
 
         public int IdEstado { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es Requerido.")]
+        [Required(ErrorMessage = "El {0} es Requerido.")]
         [Display(Name = "Estado")]
         public string Estado1 { get; set; }
 

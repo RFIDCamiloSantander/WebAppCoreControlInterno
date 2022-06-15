@@ -71,7 +71,9 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdSucursal" class="form-label"></label>
-                                    <input asp-for="FkIdSucursal" class="form-control shadow-sm" />
+                                    <select asp-for="FkIdSucursal" asp-items="ViewBag.Sucursals" class="form-control shadow-sm">
+                                        <option value="null">Sucursal</option>
+                                    </select>
                                     <span asp-validation-for="FkIdSucursal" class="text-danger"></span>
                                 </div>
                             </div>

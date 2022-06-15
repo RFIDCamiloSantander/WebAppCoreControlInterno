@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexSubSector()
         {
-            return View(await _context.SubSectors.ToListAsync());
+            var SubSectors = _context.SubSectors.Include(m => m.FkIdSectorNavigation);
+            return View(await SubSectors.ToListAsync());
         }
 
 
@@ -34,6 +36,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista para Crear.
         public IActionResult CrearSubSector()
         {
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre");
             return View();
         }
 
@@ -63,6 +66,8 @@ namespace WebAppCoreControlInterno.Controllers
 
                 return RedirectToAction(nameof(IndexSubSector));
             }
+
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre", model.FkIdSector);
             return View(model);
         }
 
@@ -85,7 +90,9 @@ namespace WebAppCoreControlInterno.Controllers
                 Custom3 = subSector.Custom3,
             };
 
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre", model.FkIdSector);
             return View(model);
+
         }
 
 
@@ -109,7 +116,10 @@ namespace WebAppCoreControlInterno.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(IndexSubSector));
             }
+
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre", model.FkIdSector);
             return View(model);
+
         }
 
 

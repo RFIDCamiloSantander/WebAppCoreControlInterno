@@ -1,25 +1,9 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
 @model EmpleadoViewModel
-@using WebAppCoreControlInterno.Impinj
 
 @{ViewBag.Title = "Crear Empleado";}
 
 @await Html.PartialAsync("_NavbarAdministracion")
-
-@*@{
-        List<string> listaEpc = null;
-
-        void leer() {
-            Reader r = new();
-            listaEpc = r.CrearLectura().Result;
-            //System.Diagnostics.Debug.WriteLine(listaEpc);
-        }
-
-        async Task OnPostLeer()
-        {
-            leer();
-        }
-    }*@
 
 @{/*Vista de empleados*/}
 <div class="container mt-5 mb-3">
@@ -45,17 +29,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="Epc" class="form-label"></label>
-                                    <select asp-for="Epc" asp-items="ViewBag.Epcs" class="form-control shadow-sm" id="slctEpc">
+                                    <select asp-for="Epc" asp-items="ViewBag.Epcs" class="form-control shadow-sm">
                                         <option>
                                             EPC
                                         </option>
-                                        @*@if (listaEpc != null)
-                                            {
-                                                foreach (string epc in listaEpc)
-                                                {
-                                                    <option value="@epc">@epc</option>
-                                                }
-                                            }*@
                                     </select>
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
@@ -98,7 +75,7 @@
                                 <div class="form-group">
                                     <label asp-for="FkIdCargo" class="form-label"></label>
                                     <select asp-for="FkIdCargo" asp-items="ViewBag.Cargos" class="form-control shadow-sm">
-                                        <option>Cargo</option>
+                                        <option value=null>Cargo</option>
                                     </select>
                                     <span asp-validation-for="FkIdCargo" class="text-danger"></span>
                                 </div>

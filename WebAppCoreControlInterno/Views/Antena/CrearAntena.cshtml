@@ -19,16 +19,18 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="Antena1" class="form-label"></label>
-                                    <input asp-for="Antena1" class="form-control shadow-sm" />
-                                    <span asp-validation-for="Antena1" class="text-danger"></span>
+                                    <label asp-for="NumAntena" class="form-label"></label>
+                                    <input asp-for="NumAntena" class="form-control shadow-sm" />
+                                    <span asp-validation-for="NumAntena" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="FkIdSector" class="form-label"></label>
-                                    <input asp-for="FkIdSector" class="form-control shadow-sm" />
-                                    <span asp-validation-for="FkIdSector" class="text-danger"></span>
+                                    <label asp-for="FkIdLector" class="form-label"></label>
+                                    <select asp-for="FkIdLector" asp-items="ViewBag.Lectors" class="form-control shadow-sm">
+                                        <option value="null">Lector</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdLector" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -36,16 +38,20 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="FkIdSubSector" class="form-label"></label>
-                                    <input asp-for="FkIdSubSector" class="form-control shadow-sm" />
-                                    <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
+                                    <label asp-for="FkIdSector" class="form-label"></label>
+                                    <select asp-for="FkIdSector" asp-items="ViewBag.Sectors" class="form-control shadow-sm">
+                                        <option value="null">Sector</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdSector" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="FkIdLector" class="form-label"></label>
-                                    <input asp-for="FkIdLector" class="form-control shadow-sm" />
-                                    <span asp-validation-for="FkIdLector" class="text-danger"></span>
+                                    <label asp-for="FkIdSubSector" class="form-label"></label>
+                                    <select asp-for="FkIdSubSector" asp-items="ViewBag.SubSectors" class="form-control shadow-sm">
+                                        <option value="null">SubSector</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

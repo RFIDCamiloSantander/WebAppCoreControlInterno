@@ -50,8 +50,6 @@ namespace WebAppCoreControlInterno.Models
 
                 entity.ToTable("ANTENA");
 
-                entity.Property(e => e.Antena1).HasColumnName("Antena");
-
                 entity.Property(e => e.Custom1).HasMaxLength(50);
 
                 entity.Property(e => e.Custom2).HasMaxLength(50);
@@ -411,9 +409,7 @@ namespace WebAppCoreControlInterno.Models
 
                 entity.ToTable("SECTOR");
 
-                entity.Property(e => e.Descripcion)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Descripcion).HasMaxLength(50);
 
                 entity.Property(e => e.FkIdSucursal).HasColumnName("FK_IdSucursal");
 
@@ -440,9 +436,7 @@ namespace WebAppCoreControlInterno.Models
 
                 entity.Property(e => e.Custom3).HasMaxLength(50);
 
-                entity.Property(e => e.Descripcion)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Descripcion).HasMaxLength(50);
 
                 entity.Property(e => e.Epc)
                     .HasMaxLength(50)

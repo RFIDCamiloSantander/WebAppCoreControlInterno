@@ -5,8 +5,8 @@
 @{
     Func<dynamic, object> antenaTemplate =
     @<tr>
-        <td class="align-middle">@item.Antena1</td>
-        <td class="align-middle">@item.FkIdSector</td>
+        <td class="align-middle">@item.NumAntena</td>
+        <td class="align-middle">@item.FkIdSectorNavigation.Nombre</td>
         <td class="align-middle">@item.FkIdSubSector</td>
         <td class="align-middle">@item.FkIdLector</td>
         <td class="align-middle">
@@ -31,10 +31,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Antena1</th>
-                <th>FkIdSector</th>
-                <th>FkIdSubSector</th>
-                <th>FkIdLector</th>
+                <th>N°Antena</th>
+                <th>Sector</th>
+                <th>SubSector</th>
+                <th>Lector</th>
                 <th></th>
             </tr>
         </thead>

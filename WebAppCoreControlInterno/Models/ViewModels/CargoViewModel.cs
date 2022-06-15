@@ -8,8 +8,8 @@ namespace WebAppCoreControlInterno.Models.ViewModels
         [Display(Name = "Id")]
         public int IdCargo { get; set; }
 
-        [Display(Name = "Nombre Cargo")]
-        [Required]
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "El {0} es Requerido.")]
         public string Cargo1 { get; set; }
 
         public virtual ICollection<Empleado> Empleados { get; set; }

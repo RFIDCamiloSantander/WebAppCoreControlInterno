@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -26,7 +28,11 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexLector()
         {
-            return View(await _context.Lectors.ToListAsync());
+            //var lectores = await _context.Lectors.ToListAsync();
+
+            //return View( lectores );
+            
+            return View(await _context.Lectors.Include(b => b.FkIdSucursalNavigation).ToListAsync());
         }
 
 
@@ -34,6 +40,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista para Crear.
         public IActionResult CrearLector()
         {
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre");
             return View();
         }
 
@@ -67,6 +74,8 @@ namespace WebAppCoreControlInterno.Controllers
 
                 return RedirectToAction(nameof(IndexLector));
             }
+
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
             return View(model);
         }
 
@@ -79,7 +88,8 @@ namespace WebAppCoreControlInterno.Controllers
 
             LectorViewModel model = new()
             {
-                Mac = lector.Modelo,
+                IdLector = lector.IdLector,
+                Mac = lector.Mac,
                 Descripcion = lector.Descripcion,
                 Ip = lector.Ip,
                 NroSerie = lector.NroSerie,
@@ -91,6 +101,8 @@ namespace WebAppCoreControlInterno.Controllers
                 Custom2 = lector.Custom2,
                 Custom3 = lector.Custom3,
             };
+
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
 
             return View(model);
         }
@@ -136,7 +148,7 @@ namespace WebAppCoreControlInterno.Controllers
             LectorViewModel model = new()
             {
                 IdLector = lector.IdLector,
-                Mac = lector.Modelo,
+                Mac = lector.Mac,
                 Descripcion = lector.Descripcion,
                 Ip = lector.Ip,
                 NroSerie = lector.NroSerie,
