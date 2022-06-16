@@ -7,10 +7,10 @@
 @{
     Func<dynamic, object> cargoTemplate =
     @<tr>
-        <td>@item.Cargo1</td>
-        <td>
-            <a class="btn btn-primary" href="Cargo/Editar/@item.IdCargo">Editar</a>
-            <a class="btn btn-danger" href="Cargo/Eliminar/@item.IdCargo">Eliminar</a>
+        <td class="align-middle">@item.Cargo1</td>
+        <td class="text-end">
+            <a class="btn btn-primary btn-sm align-middle" href="Cargo/Editar/@item.IdCargo">Editar</a>
+            <a class="btn btn-danger btn-sm align-middle" href="Cargo/Eliminar/@item.IdCargo">Eliminar</a>
         </td>
     </tr>;
 }
@@ -22,9 +22,7 @@
         </div>
         <div class="col text-end">
             <a asp-action="Create" class="btn btn-primary">
-
                 Crear
-
             </a>
         </div>
     </div>
@@ -32,6 +30,16 @@
 <div class="container">
     <table class="table">
         <thead>
+            <tr>
+                <form action="IndexCargo" method="get">
+                    <th>
+                        <input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Cargo" name="cargo" value=@ViewBag.Cargo />
+                    </th>
+                    <th class="text-end">
+                        <input type="submit" value="filtrar" class="btn btn-success text-end" />
+                    </th>
+                </form>
+            </tr>
             <tr>
                 <th>Cargo</th>
                 <th></th>

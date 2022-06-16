@@ -25,11 +25,43 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para obtener los datos de la Tabla Empleado
-        public async Task<IActionResult> IndexEmpleado()
+        [Route("IndexEmpleado")]
+        public async Task<IActionResult> IndexEmpleado(string nombre, string rut, string apellido)
         {
-            var empleados = _context.Empleados.Include(b => b.FkIdCargoNavigation);
+            ViewBag.Nombre = nombre;
+            ViewBag.Rut = rut;
+            ViewBag.Apellido = apellido;
+
+            var empleados = from m in _context.Empleados.Include(b => b.FkIdCargoNavigation) select m;
+            if (!String.IsNullOrEmpty(nombre))
+            {
+                empleados = empleados.Where(e => e.Nombre1.Contains(nombre) || e.Nombre2.Contains(nombre));
+            }
+
+            if (!String.IsNullOrEmpty(rut))
+            {
+                empleados = empleados.Where(e => e.Rut.Contains(rut));
+            }
+
+            if (!String.IsNullOrEmpty(apellido))
+            {
+                empleados = empleados.Where(e => e.Apellido1.Contains(apellido) || e.Apellido2.Contains(apellido));
+            }
+
             return View(await empleados.ToListAsync());
         }
+
+
+
+        ////Para obtener los datos de la Tabla Empleado
+        //[Route("IndexEmpleadoFiltro")]
+        //public async Task<IActionResult> IndexEmpleado(string nombre)
+        //{
+        //    var empleados = _context.Empleados.Where( e => e.Nombre1.Contains(nombre));
+        //    //var empleados = _context.Empleados.Include(b => b.FkIdCargoNavigation);
+        //    return View(await empleados.ToListAsync());
+        //}
+
 
 
         //Para poblar el select Cargo

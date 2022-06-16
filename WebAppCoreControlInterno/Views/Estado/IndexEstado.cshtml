@@ -21,6 +21,14 @@
 <div class="container">
     <table class="table">
         <thead>
+            <form action="IndexEstado" method="get">
+                <tr>
+                    <th>
+                        <input type="text" class="form-control shadow-sm w-auto" autocomplete="off" name="nombre" value=@ViewBag.Nombre />
+                    </th>
+                    <th class="align-middle text-end"><input type="submit" value="filtrar" class="btn btn-success" /></th>
+                </tr>
+            </form>
             <tr>
                 <th>Estado</th>
                 <th></th>
@@ -30,10 +38,10 @@
             @foreach (var estado in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => estado.Estado1)</td>
+                    <td class="align-middle">@Html.DisplayFor(m => estado.Estado1)</td>
                     <td>
-                        <a class="btn btn-primary" href="EditarEstado/@estado.IdEstado">Editar</a>
-                        <a class="btn btn-danger" href="EliminarEstado/@estado.IdEstado">Eliminar</a>
+                        <a class="btn btn-primary btn-sm align-middle" href="EditarEstado/@estado.IdEstado">Editar</a>
+                        <a class="btn btn-danger btn-sm align-middle" href="EliminarEstado/@estado.IdEstado">Eliminar</a>
                     </td>
                 </tr>
             }

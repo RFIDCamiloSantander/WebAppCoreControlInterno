@@ -23,9 +23,18 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexCargo( string cargo )
         {
-            return View(await _context.Cargos.ToListAsync());
+            ViewBag.Nombre = cargo;
+
+            var cargos = from m in _context.Cargos select m;
+
+            if (!String.IsNullOrEmpty(cargo))
+            {
+                cargos = cargos.Where( m => m.Cargo1.Contains( cargo ) );
+            }
+
+            return View(await cargos.ToListAsync());
         }
 
         //Para mostrar Vista para Crear.

@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label asp-for="FkIdSector" class="form-label"></label>
                                     <select asp-for="FkIdSector" asp-items="ViewBag.Sectors" class="form-control shadow-sm">
-                                        <option value="null">Sector</option>
+                                        <option value="">Sector</option>
                                     </select>
                                     <span asp-validation-for="FkIdSector" class="text-danger"></span>
                                 </div>
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label asp-for="FkIdSubSector" class="form-label"></label>
                                     <select asp-for="FkIdSubSector" asp-items="ViewBag.SubSectors" class="form-control shadow-sm">
-                                        <option value="null">SubSector</option>
+                                        <option value="">SubSector</option>
                                     </select>
                                     <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
                                 </div>
