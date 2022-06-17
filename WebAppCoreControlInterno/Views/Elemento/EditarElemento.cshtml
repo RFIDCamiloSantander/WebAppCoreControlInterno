@@ -26,9 +26,11 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="Dimension" class="form-label"></label>
-                                    <input asp-for="Dimension" class="form-control shadow-sm" />
-                                    <span asp-validation-for="Dimension" class="text-danger"></span>
+                                    <label asp-for="FkIdElementoBase" class="form-label"></label>
+                                    <select asp-for="FkIdElementoBase" asp-items="ViewBag.Bases" class="form-control shadow-sm">
+                                        <option value="">Elemento Base</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdElementoBase" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -88,14 +90,18 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdEstado" class="form-label"></label>
-                                    <input asp-for="FkIdEstado" class="form-control shadow-sm" />
+                                    <select asp-for="FkIdEstado" asp-items="ViewBag.Estados" class="form-control shadow-sm">
+                                        <option value="">Estado</option>
+                                    </select>
                                     <span asp-validation-for="FkIdEstado" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdSucursal" class="form-label"></label>
-                                    <input asp-for="FkIdSucursal" class="form-control shadow-sm" />
+                                    <select asp-for="FkIdSucursal" asp-items="ViewBag.Sucursals" class="form-control shadow-sm">
+                                        <option value="">Sucursal</option>
+                                    </select>
                                     <span asp-validation-for="FkIdSucursal" class="text-danger"></span>
                                 </div>
                             </div>
@@ -105,14 +111,18 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdSector" class="form-label"></label>
-                                    <input asp-for="FkIdSector" class="form-control shadow-sm" />
+                                    <select asp-for="FkIdSector" asp-items="ViewBag.Sectors" class="form-control shadow-sm">
+                                        <option value="">Sector</option>
+                                    </select>
                                     <span asp-validation-for="FkIdSector" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="FkIdSubSector" class="form-label"></label>
-                                    <input asp-for="FkIdSubSector" class="form-control shadow-sm" />
+                                    <select asp-for="FkIdSubSector" asp-items="ViewBag.SubSectors" class="form-control shadow-sm">
+                                        <option value="">SubSector</option>
+                                    </select>
                                     <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
                                 </div>
                             </div>
@@ -121,9 +131,11 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label asp-for="FkIdSubSector" class="form-label"></label>
-                                    <input asp-for="FkIdSubSector" class="form-control shadow-sm" />
-                                    <span asp-validation-for="FkIdSubSector" class="text-danger"></span>
+                                    <label asp-for="FkIdEmpleadoEncargado" class="form-label"></label>
+                                    <select asp-for="FkIdEmpleadoEncargado" asp-items="ViewBag.Empleados" class="form-control shadow-sm">
+                                        <option value="">Empleados</option>
+                                    </select>
+                                    <span asp-validation-for="FkIdEmpleadoEncargado" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

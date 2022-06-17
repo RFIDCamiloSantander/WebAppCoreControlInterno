@@ -26,7 +26,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Pantalla Index (Listar Estados)
         public async Task<IActionResult> IndexEstado( string nombre )
         {
-            //ViewBag.Nombre = nombre;
+            ViewBag.Nombre = nombre;
 
             var estados = from m in _context.Estados select m;
 

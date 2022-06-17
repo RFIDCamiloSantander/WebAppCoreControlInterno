@@ -1,7 +1,7 @@
 ﻿@using WebAppCoreControlInterno.Models.ViewModels
 @model EmpleadoViewModel
 
-@{ViewBag.Title = "Crear Empleado";}
+@{ViewBag.Title = "Eliminar Empleado";}
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
@@ -68,7 +68,7 @@
                             </dd>
                         </dl>
 
-                        <form asp-action="Eliminar">
+                        <form asp-action="EliminarEmpleado">
                             <input type="hidden" asp-for="IdEmpleado" />
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
                             <a class="btn btn-primary" asp-action="IndexEmpleado">Volver a la Lista</a>

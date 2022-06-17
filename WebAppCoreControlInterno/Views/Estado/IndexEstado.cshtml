@@ -24,9 +24,13 @@
             <form action="IndexEstado" method="get">
                 <tr>
                     <th>
-                        <input type="text" class="form-control shadow-sm w-auto" autocomplete="off" name="nombre" value=@ViewBag.Nombre />
+                        <input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Nombre Estado" name="nombre" value=@ViewBag.Nombre />
                     </th>
-                    <th class="align-middle text-end"><input type="submit" value="filtrar" class="btn btn-success" /></th>
+                    <th class="align-middle text-end">
+                        <input type="submit" value="Filtrar" class="btn btn-success" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexEstado">X</a>
+                    </th>
+
                 </tr>
             </form>
             <tr>
@@ -39,7 +43,7 @@
             {
                 <tr>
                     <td class="align-middle">@Html.DisplayFor(m => estado.Estado1)</td>
-                    <td>
+                    <td class="text-end">
                         <a class="btn btn-primary btn-sm align-middle" href="EditarEstado/@estado.IdEstado">Editar</a>
                         <a class="btn btn-danger btn-sm align-middle" href="EliminarEstado/@estado.IdEstado">Eliminar</a>
                     </td>

@@ -25,7 +25,6 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para obtener los datos de la Tabla Empleado
-        [Route("IndexEmpleado")]
         public async Task<IActionResult> IndexEmpleado(string nombre, string rut, string apellido)
         {
             ViewBag.Nombre = nombre;
@@ -128,7 +127,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar el Empleado a editar.
         public IActionResult EditarEmpleado(int Id)
         {
-            EmpleadoViewModel model = new EmpleadoViewModel();
+            EmpleadoViewModel model = new();
 
             var tEmpleado = _context.Empleados.Find(Id);
 
@@ -209,10 +208,10 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminarConfirmado(int id)
         {
-            var cargo = await _context.Cargos.FindAsync(id);
-            _context.Cargos.Remove(cargo);
+            var empleado = await _context.Empleados.FindAsync(id);
+            _context.Empleados.Remove(empleado);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexEmpleado));
         }
     }
 }

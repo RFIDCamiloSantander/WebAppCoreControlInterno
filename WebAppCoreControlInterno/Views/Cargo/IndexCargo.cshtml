@@ -9,8 +9,8 @@
     @<tr>
         <td class="align-middle">@item.Cargo1</td>
         <td class="text-end">
-            <a class="btn btn-primary btn-sm align-middle" href="Cargo/Editar/@item.IdCargo">Editar</a>
-            <a class="btn btn-danger btn-sm align-middle" href="Cargo/Eliminar/@item.IdCargo">Eliminar</a>
+            <a class="btn btn-primary btn-sm align-middle" href="Editar/@item.IdCargo">Editar</a>
+            <a class="btn btn-danger btn-sm align-middle" href="Eliminar/@item.IdCargo">Eliminar</a>
         </td>
     </tr>;
 }
@@ -37,6 +37,7 @@
                     </th>
                     <th class="text-end">
                         <input type="submit" value="filtrar" class="btn btn-success text-end" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexCargo">X</a>
                     </th>
                 </form>
             </tr>

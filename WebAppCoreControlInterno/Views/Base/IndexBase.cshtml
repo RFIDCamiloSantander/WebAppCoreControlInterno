@@ -18,6 +18,18 @@
     <table class="table">
         <thead>
             <tr>
+                <form action="IndexBase" method="get">
+                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Sku" name="sku" value=@ViewBag.Sku /></th>
+                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Nombre" name="nombre" value=@ViewBag.Nombre /></th>
+                    <th></th>
+                    <th></th>
+                    <th class="text-end">
+                        <input type="submit" value="Filtrar" class="btn btn-success text-end" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexBase">X</a>
+                    </th>
+                </form>
+            </tr>
+            <tr>
                 <th>Sku</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -29,11 +41,11 @@
             @foreach (var bases in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => bases.Sku)</td>
-                    <td>@Html.DisplayFor(m => bases.Nombre)</td>
-                    <td>@Html.DisplayFor(m => bases.Descripcion)</td>
-                    <td>@Html.DisplayFor(m => bases.FkIdCategoria)</td>
-                    <td>
+                    <td class="align-middle">@Html.DisplayFor(m => bases.Sku)</td>
+                    <td class="align-middle">@Html.DisplayFor(m => bases.Nombre)</td>
+                    <td class="align-middle">@Html.DisplayFor(m => bases.Descripcion)</td>
+                    <td class="align-middle">@Html.DisplayFor(m => bases.FkIdCategoria)</td>
+                    <td class="align-middle text-end">
                         <a class="btn btn-primary btn-sm" href="EditarBase/@bases.IdBase">Editar</a>
                         <a class="btn btn-danger btn-sm" href="EliminarBase/@bases.IdBase">Eliminar</a>
                     </td>

@@ -19,11 +19,11 @@ namespace WebAppCoreControlInterno.Models.ViewModels
 
         [Required]
         [Display(Name = "Fecha Ingreso")]
-        public string FechaIngreso { get; set; }
+        public DateTime FechaIngreso { get; set; }
 
         [Required]
         [Display(Name = "Fecha Ultima Lectura")]
-        public string FechaUltimaLectura { get; set; }
+        public DateTime FechaUltimaLectura { get; set; }
         public string Dimension { get; set; }
         public double? PesoKg { get; set; }
         public string NroSerie { get; set; }
