@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,12 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexElemento()
         {
+            ViewBag.Bases = new SelectList(_context.Bases, "IdBase", "Nombre");
+            ViewBag.Estados = new SelectList(_context.Estados, "IdEstado", "Estado1");
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre");
+            ViewBag.Sectors = new SelectList(_context.Sectors, "IdSector", "Nombre");
+            ViewBag.SubSectors = new SelectList(_context.SubSectors, "IdSubSector", "Nombre");
+            ViewBag.Empleados = new SelectList(_context.Empleados, "IdEmpleado", "Nombre1");
             return View(await _context.Elementos.ToListAsync());
         }
 
