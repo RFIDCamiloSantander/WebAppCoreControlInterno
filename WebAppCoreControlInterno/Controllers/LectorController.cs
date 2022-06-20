@@ -26,13 +26,50 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexLector()
+        public async Task<IActionResult> IndexLector(string mac, string ip, string nroSerie, string nroParte, string marca, string modelo, string sucursal)
         {
             //var lectores = await _context.Lectors.ToListAsync();
 
             //return View( lectores );
-            
-            return View(await _context.Lectors.Include(b => b.FkIdSucursalNavigation).ToListAsync());
+
+            var lectors = from m in _context.Lectors.Include(m => m.FkIdSucursalNavigation) select m;
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            if (!String.IsNullOrEmpty(mac))
+            {
+                lectors = lectors.Where(m => m.Mac.Contains(mac));
+            }
+
+            return View(await lectors.ToListAsync());
         }
 
 

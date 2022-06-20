@@ -27,7 +27,7 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexElemento(string pBase, string epc, string estado, string sucursal)
+        public async Task<IActionResult> IndexElemento(string pBase, string epc, string nSerie, string nParte, string estado, string sucursal)
         {
             var elementos = from m in _context.Elementos.Include(b => b.FkIdElementoBaseNavigation).
                             Include(b => b.FkIdEstadoNavigation).
@@ -44,6 +44,26 @@ namespace WebAppCoreControlInterno.Controllers
             if (!String.IsNullOrEmpty(epc))
             {
                 elementos = elementos.Where(m => m.Epc.Contains(epc));
+            }
+            
+            if (!String.IsNullOrEmpty(nSerie))
+            {
+                elementos = elementos.Where(m => m.NroSerie.Contains(nSerie));
+            }
+            
+            if (!String.IsNullOrEmpty(nParte))
+            {
+                elementos = elementos.Where(m => m.NroParte.Contains(nParte));
+            }
+            
+            if (!String.IsNullOrEmpty(estado))
+            {
+                elementos = elementos.Where(m => m.FkIdEstadoNavigation.Estado1.Contains(estado));
+            }
+            
+            if (!String.IsNullOrEmpty(sucursal))
+            {
+                elementos = elementos.Where(m => m.FkIdSucursalNavigation.Nombre.Contains(sucursal));
             }
 
             return View(await elementos.ToListAsync());

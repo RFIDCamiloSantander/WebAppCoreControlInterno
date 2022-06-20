@@ -22,19 +22,26 @@
     <form action="IndexElemento" method="get">
         <div class="row">
             <div class="col-1">
-                <input type="text" class="col-1 form-control shadow-sm" autocomplete="off" placeholder="Epc" name="epc" value=@ViewBag.Epc />
+                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Epc" name="epc" value=@ViewBag.Epc />
             </div>
             <div class="col-1">
                 <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Base" name="pBase" value=@ViewBag.Base />
             </div>
             <div class="col-1"></div>
             <div class="col-1">
-                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="N° Serie" name="serie" value=@ViewBag.Serie />
+                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="N° Serie" name="nSerie" value=@ViewBag.Serie />
             </div>
             <div class="col-1">
-                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="N° Parte" name="parte" value=@ViewBag.Parte />
+                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="N° Parte" name="nParte" value=@ViewBag.Parte />
             </div>
-            <div class="col-5"></div>
+            <div class="col-2"></div>
+            <div class="col-1">
+                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Estado" name="estado" value=@ViewBag.Estado />
+            </div>
+            <div class="col-1">
+                <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Sucursal" name="sucursal" value=@ViewBag.Sucursal />
+            </div>
+            <div class="col-2"></div>
             <div class="col-1">
                 <input type="submit" value="filtrar" class="btn btn-success" />
             </div>
@@ -42,8 +49,8 @@
     </form>
     <table class="table">
         <thead>
-            <tr>
-                @*<form action="IndexElemento" method="get">
+            @*<tr>
+                <form action="IndexElemento" method="get">
                     <th class="col-1"><input type="text" class="col-1 form-control shadow-sm w-auto" autocomplete="off" placeholder="Epc" name="epc" value=@ViewBag.Epc /></th>
                     <th><input type="text" class="col-1 form-control shadow-sm w-auto" autocomplete="off" placeholder="Base" name="pBase" value=@ViewBag.Base /></th>
                     <th></th>
@@ -59,8 +66,8 @@
                     <th class="text-end">
                         <input type="submit" value="filtrar" class="btn btn-success text-end" />
                     </th>
-                </form>*@
-            </tr>
+                </form>
+            </tr>*@
             <tr>
                 <th>Epc</th>
                 <th>Elemento Base</th>

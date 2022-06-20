@@ -14,7 +14,7 @@
         <td class="align-middle">@item.Marca</td>
         <td class="align-middle">@item.Modelo</td>
         <td class="align-middle">@item.FkIdSucursalNavigation.Nombre</td>
-        <td class="align-middle">
+        <td class="align-middle text-end">
             <a class="btn btn-primary btn-sm" href="EditarLector/@item.IdLector">Editar</a>
             <a class="btn btn-danger btn-sm" href="EliminarLector/@item.IdLector">Eliminar</a>
         </td>
@@ -35,6 +35,21 @@
 <div class="container">
     <table class="table">
         <thead>
+            <form action="IndexLector" method="get">
+                <tr>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="MAC" name="mac" value=@ViewBag.Nombre /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="IP" name="ip" value=@ViewBag.Ip /></th>
+                    <th></th>
+                    <th></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="Marca" name="marca" value=@ViewBag.Marca /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="Modelo" name="modelo" value=@ViewBag.Modelo /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="Sucursal" name="sucursal" value=@ViewBag.Sucursal /></th>
+                    <th class="text-end">
+                        <input type="submit" value="filtrar" class="btn btn-success" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexLector">X</a>
+                    </th>
+                </tr>
+            </form>
             <tr>
                 <th>Mac</th>
                 <th>Ip</th>
