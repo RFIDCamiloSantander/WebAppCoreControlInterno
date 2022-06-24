@@ -1,0 +1,51 @@
+﻿@model List<Categoria>
+
+@{ViewBag.Title = "Lista Categorias";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Categorías</h1>
+        </div>
+        <div class="col text-end">
+            <a asp-action="CrearCategoria" class="btn btn-primary">
+                Crear
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <form action="IndexCategoria" method="get">
+                    <th>
+                        <input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Categoria" name="categoria" value=@ViewBag.Categoria />
+                    </th>
+                    <th class="text-end">
+                        <input type="submit" value="filtrar" class="btn btn-success text-end" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexCategoria">X</a>
+                    </th>
+                </form>
+            </tr>
+            <tr>
+                <th>Categoría</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Categoria categoria in Model)
+            {
+                <tr>
+                    <td class="align-middle">@categoria.Nombre</td>
+                    <td class="text-end">
+                        <a class="btn btn-primary btn-sm align-middle" href="EditarCategoria/@categoria.IdCategoria">Editar</a>
+                        <a class="btn btn-danger btn-sm align-middle" href="EliminarCategoria/@categoria.IdCategoria">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

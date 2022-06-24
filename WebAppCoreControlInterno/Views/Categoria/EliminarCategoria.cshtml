@@ -1,0 +1,35 @@
+﻿@model CategoriaViewModel
+
+@{ViewBag.Title = "Eliminar Categoría";}
+
+@await Html.PartialAsync("_NavbarAdministracion")
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Eliminar</h1>
+                    <h3>Seguro desea eliminar esta CATEGORÍA?</h3>
+                    <div>
+                        <hr />
+                        <dl class="row">
+                            <dt class="">
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </dt>
+                            <dd class="">
+                                @Html.DisplayFor(model => model.Nombre)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="EliminarCategoria">
+                            <input type="hidden" asp-for="IdCategoria" />
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <a class="btn btn-primary" asp-action="IndexCategoria">Volver a la Lista</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

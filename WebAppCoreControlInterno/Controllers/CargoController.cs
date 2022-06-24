@@ -37,20 +37,20 @@ namespace WebAppCoreControlInterno.Controllers
             return View(await cargos.ToListAsync());
         }
 
-        //Para mostrar Vista para Crear.
-        public IActionResult Create()
-        {
-            return View();
-        }
+        ////Para mostrar Vista para Crear.
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
         //Para crear empleados
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CargoViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Cargo cargo = new Cargo()
+                Cargo cargo = new()
                 {
                     Cargo1 = model.Cargo1
                 };
@@ -68,12 +68,14 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar el Cargo a editar.
         public IActionResult Editar(int Id)
         {
-            CargoViewModel model = new CargoViewModel();
-
             var oCargo = _context.Cargos.Find(Id);
+
+            CargoViewModel model = new()
+            {
+                IdCargo = oCargo.IdCargo,
+                Cargo1 = oCargo.Cargo1,
+            };
             
-            model.IdCargo = oCargo.IdCargo;
-            model.Cargo1 = oCargo.Cargo1;
 
             return View(model);
         }

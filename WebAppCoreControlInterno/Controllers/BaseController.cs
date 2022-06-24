@@ -24,7 +24,7 @@ namespace WebAppCoreControlInterno.Controllers
         {
             ViewBag.Nombre = nombre;
             ViewBag.Sku = sku;
-            var bases = from m in _context.Bases select m;
+            var bases = from m in _context.Bases.Include(m => m.FkIdCategoriaNavigation) select m;
 
             if (!String.IsNullOrEmpty(nombre))
             {
@@ -43,6 +43,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Pantalla creacion de elementos base
         public IActionResult CrearBase()
         {
+            ViewBag.Categorias = new SelectList(_context.Categoria, "IdCategoria", "Nombre");
             return View();
         }
 
@@ -69,7 +70,7 @@ namespace WebAppCoreControlInterno.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(IndexBase));
             }
-
+            ViewBag.Categorias = new SelectList(_context.Categoria, "IdCategoria", "Nombre", model.FkIdCategoria);
             return View(model);
         }
 
@@ -92,7 +93,7 @@ namespace WebAppCoreControlInterno.Controllers
                 Custom2 = tBase.Custom2,
                 Custom3 = tBase.Custom3,
             };
-
+            ViewBag.Categorias = new SelectList(_context.Categoria, "IdCategoria", "Nombre", tBase.FkIdCategoria);
             return View(model);
         }
 
@@ -120,6 +121,7 @@ namespace WebAppCoreControlInterno.Controllers
                 return RedirectToAction(nameof(IndexBase));
             }
 
+            ViewBag.Categorias = new SelectList(_context.Categoria, "IdCategoria", "Nombre", model.FkIdCategoria);
             return View(model);
         }
 

@@ -20,6 +20,7 @@ namespace WebAppCoreControlInterno.Models
         public virtual DbSet<Antena> Antenas { get; set; }
         public virtual DbSet<Base> Bases { get; set; }
         public virtual DbSet<Cargo> Cargos { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Elemento> Elementos { get; set; }
         public virtual DbSet<Empleado> Empleados { get; set; }
         public virtual DbSet<Estado> Estados { get; set; }
@@ -103,6 +104,11 @@ namespace WebAppCoreControlInterno.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("SKU");
+
+                entity.HasOne(d => d.FkIdCategoriaNavigation)
+                    .WithMany(p => p.Bases)
+                    .HasForeignKey(d => d.FkIdCategoria)
+                    .HasConstraintName("FK_BASE_CATEGORIA");
             });
 
             modelBuilder.Entity<Cargo>(entity =>
@@ -118,6 +124,17 @@ namespace WebAppCoreControlInterno.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("Cargo");
+            });
+
+            modelBuilder.Entity<Categoria>(entity =>
+            {
+                entity.HasKey(e => e.IdCategoria);
+
+                entity.ToTable("CATEGORIA");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Elemento>(entity =>

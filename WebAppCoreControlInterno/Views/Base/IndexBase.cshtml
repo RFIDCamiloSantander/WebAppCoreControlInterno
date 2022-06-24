@@ -44,7 +44,7 @@
                     <td class="align-middle">@Html.DisplayFor(m => bases.Sku)</td>
                     <td class="align-middle">@Html.DisplayFor(m => bases.Nombre)</td>
                     <td class="align-middle">@Html.DisplayFor(m => bases.Descripcion)</td>
-                    <td class="align-middle">@Html.DisplayFor(m => bases.FkIdCategoria)</td>
+                    <td class="align-middle">@Html.DisplayFor(m => bases.FkIdCategoriaNavigation.Nombre)</td>
                     <td class="align-middle text-end">
                         <a class="btn btn-primary btn-sm" href="EditarBase/@bases.IdBase">Editar</a>
                         <a class="btn btn-danger btn-sm" href="EliminarBase/@bases.IdBase">Eliminar</a>

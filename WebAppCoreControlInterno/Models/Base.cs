@@ -21,6 +21,7 @@ namespace WebAppCoreControlInterno.Models
         public string Custom2 { get; set; }
         public string Custom3 { get; set; }
 
+        public virtual Categoria FkIdCategoriaNavigation { get; set; }
         public virtual ICollection<Elemento> Elementos { get; set; }
     }
 }
