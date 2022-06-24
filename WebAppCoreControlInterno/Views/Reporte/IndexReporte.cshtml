@@ -1,0 +1,59 @@
+﻿@*@model*@
+
+@{ViewBag.Title = "Reportes";}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-2 h-100">
+            <div class="card shadow-sm">
+                <h5 class="card-header">Filtros</h5>
+                <div class="card-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control small" id="floatingElementoBase" placeholder="Elemento Base">
+                        <label for="floatingElementoBase">Elemento Base</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="card shadow h-100">
+                <h4 class="card-header">Reportes</h4>
+                <div class="card-body">
+                    <table class="table-info table-responsive table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>Elemento Base</th>
+                                <th>N° Serie</th>
+                                <th>N° Parte</th>
+                                <th>Sucursal</th>
+                                <th>Ultima Lectura</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @* @foreach ( Elemento elemento in ViewBag.Elementos)
+                            {
+                                <tr>
+                                    <td>@elemento.FkIdElementoBase</td>
+                                    <td>@elemento.NroSerie</td>
+                                    <td>@elemento.NroParte</td>
+                                    <td>@elemento.FkIdSucursal</td>
+                                    <td>@elemento.FechaUltimaLectura</td>
+                                </tr>
+                            }*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card shadow-sm h-100">
+                    <h5 class="card-header">
+                        Información
+                    </h5>
+                    <div class="card-body">
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
