@@ -25,9 +25,29 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexSubSector()
+        public async Task<IActionResult> IndexSubSector(string nombre, string epc, string sucursal)
         {
-            var SubSectors = _context.SubSectors.Include(m => m.FkIdSectorNavigation);
+            ViewBag.Nombre = nombre;
+            ViewBag.Epc = epc;
+            ViewBag.Sucursal = sucursal;
+
+            var SubSectors = from m in _context.SubSectors.Include(m => m.FkIdSectorNavigation) select m;
+
+            if (!String.IsNullOrEmpty(nombre))
+            {
+                SubSectors = SubSectors.Where(m => m.Nombre.Contains(nombre));
+            }
+
+            if (!String.IsNullOrEmpty(epc))
+            {
+                SubSectors = SubSectors.Where(m => m.Epc.Contains(epc));
+            }
+
+            if (!String.IsNullOrEmpty(sucursal))
+            {
+                SubSectors = SubSectors.Where(m => m.FkIdSectorNavigation.Nombre.Contains(sucursal));
+            }
+
             return View(await SubSectors.ToListAsync());
         }
 

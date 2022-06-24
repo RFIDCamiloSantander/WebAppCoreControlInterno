@@ -32,6 +32,17 @@
     <table class="table">
         <thead>
             <tr>
+                <form action="IndexSector" method="get">
+                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Nombre" name="nombre" value=@ViewBag.Nombre /></th>
+                    <th></th>
+                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Sucursal" name="sucursal" value=@ViewBag.Sucursal /></th>
+                    <th class="text-end">
+                        <input type="submit" value="filtrar" class="btn btn-success" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexSector">X</a>
+                    </th>
+                </form>
+            </tr>
+            <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Sucursal</th>

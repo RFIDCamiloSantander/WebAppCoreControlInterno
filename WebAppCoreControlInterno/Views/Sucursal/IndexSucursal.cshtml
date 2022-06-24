@@ -7,14 +7,14 @@
 @{
     Func<dynamic, object> sucursalTemplate =
     @<tr>
-        <td>@item.Nombre</td>
-        <td>@item.Direccion</td>
-        <td>@item.Region</td>
-        <td>@item.Comuna</td>
-        <td>@item.Epc</td>
-        <td>@item.CoordenadaX</td>
-        <td>@item.CoordenadaY</td>
-        <td>
+        <td class="align-middle">@item.Nombre</td>
+        <td class="align-middle">@item.Direccion</td>
+        <td class="align-middle">@item.Region</td>
+        <td class="align-middle">@item.Comuna</td>
+        <td class="align-middle">@item.Epc</td>
+        <td class="align-middle">@item.CoordenadaX</td>
+        <td class="align-middle">@item.CoordenadaY</td>
+        <td class="align-middle text-end">
             <a class="btn btn-primary" href="EditarSucursal/@item.IdSucursal">Editar</a>
             <a class="btn btn-danger" href="EliminarSucursal/@item.IdSucursal">Eliminar</a>
         </td>
@@ -35,6 +35,21 @@
 <div class="container">
     <table class="table">
         <thead>
+            <tr>
+                <form action="IndexSucursal" method="get">
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Nombre" name="nombre" value=@ViewBag.Nombre /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Dirección" name="direccion" value=@ViewBag.Direccion /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Region" name="region" value=@ViewBag.Region /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Comuna" name="comuna" value=@ViewBag.Comuna /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="EPC" name="epc" value=@ViewBag.Epc /></th>
+                    <th></th>
+                    <th></th>
+                    <th class="text-end">
+                        <input type="submit" value="Filtrar" class="btn btn-success" />
+                        <a type="button" class="btn btn-danger" asp-action="IndexSucursal">X</a>
+                    </th>
+                </form>
+            </tr>
             <tr>
                 <th>Nombre</th>
                 <th>Direccion</th>

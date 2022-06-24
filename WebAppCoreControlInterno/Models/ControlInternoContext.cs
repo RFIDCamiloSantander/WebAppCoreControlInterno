@@ -138,13 +138,9 @@ namespace WebAppCoreControlInterno.Models
                     .HasMaxLength(50)
                     .HasColumnName("EPC");
 
-                entity.Property(e => e.FechaIngreso)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.FechaIngreso).HasColumnType("date");
 
-                entity.Property(e => e.FechaUltimaLectura)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.FechaUltimaLectura).HasColumnType("date");
 
                 entity.Property(e => e.FkIdElementoBase).HasColumnName("FK_IdElementoBase");
 

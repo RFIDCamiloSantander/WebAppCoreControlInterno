@@ -25,18 +25,27 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexAntena(string nombre)
+        public async Task<IActionResult> IndexAntena(string sector, string subSector, string lector)
         {
-            //var antenas = from m in _context.Antenas select m;
+            var antenas = from m in _context.Antenas.Include(b => b.FkIdLectorNavigation) select m;
 
-            //if (!String.IsNullOrEmpty(nombre))
-            //{
-            //    //antenas = antenas.Where(m => m.NumAntena.Contains(nombre));
-            //}
+            if (!String.IsNullOrEmpty(sector))
+            {
+                antenas = antenas.Where(m => m.FkIdSectorNavigation.Nombre.Contains(sector));
+            }
 
+            if (!String.IsNullOrEmpty(subSector))
+            {
+                antenas = antenas.Where(m => m.FkIdSubSectorNavigation.Nombre.Contains(subSector));
+            }
+
+            if (!String.IsNullOrEmpty(lector))
+            {
+                antenas = antenas.Where(m => m.FkIdLectorNavigation.Mac.Contains(lector));
+            }
             //return View(await antenas.Include(b => b.FkIdLectorNavigation).ToListAsync());
 
-            return View( await _context.Antenas.ToListAsync());
+            return View( await antenas.ToListAsync());
         }
 
 

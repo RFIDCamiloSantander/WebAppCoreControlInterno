@@ -15,8 +15,8 @@ namespace WebAppCoreControlInterno.Models
 
         public int IdElemento { get; set; }
         public string Epc { get; set; }
-        public string FechaIngreso { get; set; }
-        public string FechaUltimaLectura { get; set; }
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaUltimaLectura { get; set; }
         public string Dimension { get; set; }
         public double? PesoKg { get; set; }
         public string NroSerie { get; set; }

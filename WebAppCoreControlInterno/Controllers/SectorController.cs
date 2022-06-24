@@ -25,9 +25,24 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexSector()
+        public async Task<IActionResult> IndexSector(string nombre, string sucursal)
         {
-            var sectores = _context.Sectors.Include(b => b.FkIdSucursalNavigation);
+            ViewBag.Nombre = nombre;
+
+            ViewBag.Sucursal = sucursal;
+
+            var sectores = from m in _context.Sectors.Include(b => b.FkIdSucursalNavigation) select m;
+
+            if (!String.IsNullOrEmpty(nombre))
+            {
+                sectores = sectores.Where( m => m.Nombre.Contains(nombre));
+            }
+
+            if (!String.IsNullOrEmpty(sucursal))
+            {
+                sectores = sectores.Where(m => m.FkIdSucursalNavigation.Nombre.Contains(sucursal));
+            }
+
             return View( await sectores.ToListAsync());
         }
 

@@ -20,9 +20,23 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        public async Task<IActionResult> IndexBase()
+        public async Task<IActionResult> IndexBase(string nombre, string sku)
         {
-            return View(await _context.Bases.ToListAsync());
+            ViewBag.Nombre = nombre;
+            ViewBag.Sku = sku;
+            var bases = from m in _context.Bases select m;
+
+            if (!String.IsNullOrEmpty(nombre))
+            {
+                bases = bases.Where(m => m.Nombre.Contains(nombre));
+            }
+
+            if (!String.IsNullOrEmpty(sku))
+            {
+                bases = bases.Where(m => m.Sku.Contains(sku));
+            }
+
+            return View(await bases.ToListAsync());
         }
 
 

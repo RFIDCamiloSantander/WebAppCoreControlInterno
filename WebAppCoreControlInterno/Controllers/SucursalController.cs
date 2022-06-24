@@ -21,9 +21,36 @@ namespace WebAppCoreControlInterno.Controllers
 
 
 
-        public async Task<IActionResult> IndexSucursal()
+        public async Task<IActionResult> IndexSucursal(string nombre, string direccion, string region, string comuna)
         {
-            return View( await _context.Sucursals.ToListAsync() );
+            ViewBag.Nombre = nombre;
+            ViewBag.Direccion = direccion;
+            ViewBag.Region = region;
+            ViewBag.Comuna = comuna;
+
+            var sucursals = from m in _context.Sucursals select m;
+
+            if (!String.IsNullOrEmpty(nombre))
+            {
+                sucursals = sucursals.Where(m => m.Nombre.Contains(nombre));
+            }
+
+            if (!String.IsNullOrEmpty(direccion))
+            {
+                sucursals = sucursals.Where(m => m.Direccion.Contains(direccion));
+            }
+
+            if (!String.IsNullOrEmpty(region))
+            {
+                sucursals = sucursals.Where(m => m.Region.Contains(region));
+            }
+
+            if (!String.IsNullOrEmpty(comuna))
+            {
+                sucursals = sucursals.Where(m => m.Comuna.Contains(comuna));
+            }
+
+            return View( await sucursals.ToListAsync() );
         }
 
 

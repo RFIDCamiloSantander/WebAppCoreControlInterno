@@ -8,7 +8,7 @@
         <td class="align-middle">@item.NumAntena</td>
         <td class="align-middle">@item.FkIdSector</td>
         <td class="align-middle">@item.FkIdSubSector</td>
-        <td class="align-middle">@item.FkIdLector</td>
+        <td class="align-middle">@item.FkIdLectorNavigation.Mac</td>
         <td class="align-middle">
             <a class="btn btn-primary btn-sm" href="EditarAntena/@item.IdAntena">Editar</a>
             <a class="btn btn-danger btn-sm" href="EliminarAntena/@item.IdAntena">Eliminar</a>
@@ -30,6 +30,18 @@
 <div class="container">
     <table class="table">
         <thead>
+            <tr>
+                <form>
+                <th></th>
+                <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Sector" name="sector" value=@ViewBag.Sector /></th>
+                <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="SubSector" name="subsector" value=@ViewBag.SubSector /></th>
+                <th><input type="text" class="form-control shadow-sm" autocomplete="off" placeholder="Lector" name="lector" value=@ViewBag.Lector /></th>
+                <th class="text-end">
+                    <input type="submit" value="filtrar" class="btn btn-success text-end" />
+                    <a type="button" class="btn btn-danger" asp-action="IndexAntena">X</a>
+                </th>
+                </form>
+            </tr>
             <tr>
                 <th>N°Antena</th>
                 <th>Sector</th>

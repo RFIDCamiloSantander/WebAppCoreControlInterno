@@ -72,7 +72,9 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label asp-for="Epc" class="form-label"></label>
-                                    <input asp-for="Epc" class="form-control shadow-sm" />
+                                    <select asp-for="Epc" class="form-control shadow-sm">
+                                        <option value="">EPC</option>
+                                    </select>
                                     <span asp-validation-for="Epc" class="text-danger"></span>
                                 </div>
                             </div>

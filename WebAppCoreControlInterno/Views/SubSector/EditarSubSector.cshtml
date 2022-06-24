@@ -37,7 +37,9 @@
                             <div class="col-12 col-md-6">
                                 <div>
                                     <label asp-for="FkIdSector" class="form-label"></label>
-                                    <input asp-for="FkIdSector" class="form-control shadow-sm mb-3" />
+                                    <select asp-for="FkIdSector" asp-items="@ViewBag.Sectors" class="form-control shadow-sm">
+                                        <option>Sector</option>
+                                    </select>
                                     <span asp-validation-for="FkIdSector" class="text-danger"></span>
 
                                 </div>

@@ -25,7 +25,7 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexCargo( string cargo )
         {
-            ViewBag.Nombre = cargo;
+            ViewBag.Cargo = cargo;
 
             var cargos = from m in _context.Cargos select m;
 
@@ -59,7 +59,7 @@ namespace WebAppCoreControlInterno.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexCargo));
             }
             return View(model);
         }
@@ -93,7 +93,7 @@ namespace WebAppCoreControlInterno.Controllers
 
                 _context.Entry(tCargo).State = EntityState.Modified;
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexCargo));
             }
             return View(model);
         }
@@ -121,7 +121,7 @@ namespace WebAppCoreControlInterno.Controllers
             var cargo = await _context.Cargos.FindAsync(id);
             _context.Cargos.Remove(cargo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexCargo));
         }
     }
 }
