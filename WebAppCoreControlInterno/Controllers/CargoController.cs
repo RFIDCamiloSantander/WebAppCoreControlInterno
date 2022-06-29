@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -48,6 +49,15 @@ namespace WebAppCoreControlInterno.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CargoViewModel model)
         {
+            System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(model) );
+
+            var tCargo = _context.Cargos.Where(m => m.Cargo1.Equals(model.Cargo1));
+
+            if (tCargo.Any())
+            {
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Cargo cargo = new()
@@ -104,12 +114,21 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de Cargo.
         public IActionResult Eliminar(int Id)
         {
-            CargoViewModel model = new CargoViewModel();
-
+            ViewBag.Errors = false;
             var oCargo = _context.Cargos.Find(Id);
+            var empleado = _context.Empleados.Where(m => m.FkIdCargo.Equals(Id));
 
-            model.IdCargo = oCargo.IdCargo;
-            model.Cargo1 = oCargo.Cargo1;
+            if (empleado.Any())
+            {
+                ViewBag.Errors = true;
+            }
+
+            CargoViewModel model = new()
+            {
+                IdCargo = oCargo.IdCargo,
+                Cargo1 = oCargo.Cargo1,
+            };
+
 
             return View(model);
         }

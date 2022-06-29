@@ -147,7 +147,15 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de SubSector.
         public IActionResult EliminarSubSector(int Id)
         {
+            ViewBag.Errors = false;
             var subSector = _context.SubSectors.Find(Id);
+            var elemento = _context.Elementos.Where(m => m.FkIdSubSector.Equals(Id));
+            var movimiento = _context.Movimientos.Where(m => m.FkIdSubSector.Equals(Id));
+
+            if (elemento.Any() || movimiento.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             SubSectorViewModel model = new()
             {

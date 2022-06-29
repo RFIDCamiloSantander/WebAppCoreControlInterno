@@ -141,6 +141,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de SubSector.
         public IActionResult EliminarAntena(int Id)
         {
+            ViewBag.Errors = false;
+
             var antena = _context.Antenas.Find(Id);
 
             AntenaViewModel model = new()

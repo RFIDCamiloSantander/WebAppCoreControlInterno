@@ -9,54 +9,66 @@
     <div class="row justify-content-center mt-5">
         <div class="col-12 col-md-6">
             <div class="card shadow">
-                <div class="card-body">
-                    <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar este SubSector?</h3>
-                    <div>
-                        <hr />
-                        <dl class="row">
-                            <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </dt>
-                            <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Nombre)
-                            </dd>
-                        </dl>
+                @if(ViewBag.Errors == false){
+                    <div class="card-body">
+                        <h1 class="card-title">Eliminar</h1>
+                        <h3>Seguro desea eliminar este SubSector?</h3>
+                        <div>
+                            <hr />
+                            <dl class="row">
+                                <dt class="col-12 col-md-4">
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </dt>
+                                <dd class="col-12 col-md-8">
+                                    @Html.DisplayFor(model => model.Nombre)
+                                </dd>
+                            </dl>
 
-                        <dl class="row">
-                            <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(m => m.Epc)
-                            </dt>
-                            <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Epc)
-                            </dd>
-                        </dl>
+                            <dl class="row">
+                                <dt class="col-12 col-md-4">
+                                    @Html.DisplayFor(m => m.Epc)
+                                </dt>
+                                <dd class="col-12 col-md-8">
+                                    @Html.DisplayFor(model => model.Epc)
+                                </dd>
+                            </dl>
 
-                        <dl class="row">
-                            <dt class="col-12 col-md-4">
-                                @Html.DisplayFor(model => model.FkIdSector)
-                            </dt>
-                            <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.FkIdSector)
-                            </dd>
-                        </dl>
+                            <dl class="row">
+                                <dt class="col-12 col-md-4">
+                                    @Html.DisplayFor(model => model.FkIdSector)
+                                </dt>
+                                <dd class="col-12 col-md-8">
+                                    @Html.DisplayFor(model => model.FkIdSector)
+                                </dd>
+                            </dl>
 
-                        <dl class="row">
-                            <dt class="col-12 col-md-4">
-                                @Html.DisplayNameFor(model => model.Descripcion)
-                            </dt>
-                            <dd class="col-12 col-md-8">
-                                @Html.DisplayFor(model => model.Descripcion)
-                            </dd>
-                        </dl>
+                            <dl class="row">
+                                <dt class="col-12 col-md-4">
+                                    @Html.DisplayNameFor(model => model.Descripcion)
+                                </dt>
+                                <dd class="col-12 col-md-8">
+                                    @Html.DisplayFor(model => model.Descripcion)
+                                </dd>
+                            </dl>
 
-                        <form asp-action="EliminarSucursal">
-                            <input type="hidden" asp-for="IdSubSector" />
-                            <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="IndexSubSector">Volver a la Lista</a>
-                        </form>
+                            <form asp-action="EliminarSucursal">
+                                <input type="hidden" asp-for="IdSubSector" />
+                                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                                <a class="btn btn-primary" asp-action="IndexSubSector">Volver a la Lista</a>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="card-body">
+                        <h1 class="card-title text-danger">Error</h1>
+                        <h3>Este "sub-sector" no se puede eliminar ya que esta asociado a algún elemento.</h3>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary" asp-action="IndexSubSector">Volver</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

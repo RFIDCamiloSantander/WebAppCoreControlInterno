@@ -130,6 +130,14 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de Elemento Base.
         public IActionResult EliminarBase(int Id)
         {
+            ViewBag.Errors = false;
+
+            var tElemento = _context.Elementos.Where(m => m.FkIdElementoBase.Equals(Id));
+
+            if (tElemento.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             var tBase = _context.Bases.Find(Id);
 

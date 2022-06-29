@@ -10,43 +10,58 @@
         <div class="col-12 col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar este Elemento Base?</h3>
-                    <div>
-                        <hr />
-                        <dl class="row">
-                            <dt class="col">
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </dt>
-                            <dd class="col">
-                                @Html.DisplayFor(model => model.Nombre)
-                            </dd>
-                        </dl>
+                    @{
+                        if (ViewBag.Errors == false)
+                        {
+                            <h1 class="card-title">Eliminar</h1>
+                            <h3>Seguro desea eliminar este Elemento Base?</h3>
+                            <div>
+                                <hr />
+                                <dl class="row">
+                                    <dt class="col">
+                                        @Html.DisplayNameFor(model => model.Nombre)
+                                    </dt>
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.Nombre)
+                                    </dd>
+                                </dl>
 
-                        <dl class="row">
-                            <dt class="">
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </dt>
-                            <dd class="">
-                                @Html.DisplayFor(model => model.Nombre)
-                            </dd>
-                        </dl>
+                                <dl class="row">
+                                    <dt class="">
+                                        @Html.DisplayNameFor(model => model.Nombre)
+                                    </dt>
+                                    <dd class="">
+                                        @Html.DisplayFor(model => model.Nombre)
+                                    </dd>
+                                </dl>
 
-                        <dl class="row">
-                            <dt class="">
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </dt>
-                            <dd class="">
-                                @Html.DisplayFor(model => model.Nombre)
-                            </dd>
-                        </dl>
+                                <dl class="row">
+                                    <dt class="">
+                                        @Html.DisplayNameFor(model => model.Nombre)
+                                    </dt>
+                                    <dd class="">
+                                        @Html.DisplayFor(model => model.Nombre)
+                                    </dd>
+                                </dl>
 
-                        <form asp-action="Eliminar">
-                            <input type="hidden" asp-for="IdBase" />
-                            <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="Index">Volver a la Lista</a>
-                        </form>
-                    </div>
+                                <form asp-action="EliminarBase">
+                                    <input type="hidden" asp-for="IdBase" />
+                                    <input type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <a class="btn btn-primary" asp-action="Index">Volver a la Lista</a>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-body">
+                                <h1 class="card-title text-danger">Error</h1>
+                                <h3>Este "elemento base" no se puede eliminar ya que esta asociado a algún elemento.</h3>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary" asp-action="IndexBase">Volver</a>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>

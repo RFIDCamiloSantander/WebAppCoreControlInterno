@@ -39,32 +39,32 @@ namespace WebAppCoreControlInterno.Controllers
                 lectors = lectors.Where(m => m.Mac.Contains(mac));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(ip))
             {
-                lectors = lectors.Where(m => m.Mac.Contains(mac));
+                lectors = lectors.Where(m => m.Ip.Contains(ip));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(nroSerie))
             {
-                lectors = lectors.Where(m => m.Mac.Contains(mac));
+                lectors = lectors.Where(m => m.NroSerie.Contains(nroSerie));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(nroParte))
             {
-                lectors = lectors.Where(m => m.Mac.Contains(mac));
+                lectors = lectors.Where(m => m.NroParte.Contains(nroParte));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(marca))
             {
-                lectors = lectors.Where(m => m.Mac.Contains(mac));
+                lectors = lectors.Where(m => m.Marca.Contains(marca));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(modelo))
             {
-                lectors = lectors.Where(m => m.Mac.Contains(mac));
+                lectors = lectors.Where(m => m.Modelo.Contains(modelo));
             }
 
-            if (!String.IsNullOrEmpty(mac))
+            if (!String.IsNullOrEmpty(sucursal))
             {
                 lectors = lectors.Where(m => m.Mac.Contains(mac));
             }
@@ -180,7 +180,18 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de SubSector.
         public IActionResult EliminarLector(int Id)
         {
+            ViewBag.Errors = false;
+
             var lector = _context.Lectors.Find(Id);
+
+            //Verificacion para no intentar borrar elementos asociados
+            var antena = _context.Antenas.Where(m => m.FkIdLector.Equals(Id));
+            var lectura = _context.Lecturas.Where(m => m.FkIdLector.Equals(Id));
+
+            if (lectura.Any() || antena.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             LectorViewModel model = new()
             {

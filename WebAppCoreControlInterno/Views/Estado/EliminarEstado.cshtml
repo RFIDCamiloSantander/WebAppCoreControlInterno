@@ -9,28 +9,44 @@
     <div class="row justify-content-center mt-5">
         <div class="col-12 col-md-6">
             <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar este Estado?</h3>
-                    <div>
-                        <hr />
-                        <dl class="row">
-                            <dt class="">
-                                @Html.DisplayNameFor(model => model.Estado1)
-                            </dt>
-                            <dd class="">
-                                @Html.DisplayFor(model => model.Estado1)
-                            </dd>
-                        </dl>
+            @{
+                if (ViewBag.Errors == false)
+                {
+                        <div class="card-body">
+                            <h1 class="card-title">Eliminar</h1>
+                            <h3>Seguro desea eliminar este Estado?</h3>
+                            <div>
+                                <hr />
+                                <dl class="row">
+                                    <dt class="">
+                                        @Html.DisplayNameFor(model => model.Estado1)
+                                    </dt>
+                                    <dd class="">
+                                        @Html.DisplayFor(model => model.Estado1)
+                                    </dd>
+                                </dl>
 
-                        <form asp-action="EliminarEstado">
-                            @Html.HiddenFor(m => m.IdEstado)
-                            @*<input type="hidden" asp-for="IdEstado" />*@
-                            <input type="submit" value="Eliminar" class="btn btn-danger" />
-                            <a class="btn btn-primary" asp-action="IndexEstado">Volver a la Lista</a>
-                        </form>
-                    </div>
-                </div>
+                                <form asp-action="EliminarEstado">
+                                    @Html.HiddenFor(m => m.IdEstado)
+                                    @*<input type="hidden" asp-for="IdEstado" />*@
+                                    <input type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <a class="btn btn-primary" asp-action="IndexEstado">Volver a la Lista</a>
+                                </form>
+                            </div>
+                        </div>
+                    
+                }
+                else
+                {
+                        <div class="card-body">
+                            <h1 class="card-title text-danger">Error</h1>
+                            <h3>Este "estado" no se puede eliminar ya que esta asociado a algún elemento.</h3>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" asp-action="IndexEstado">Volver</a>
+                        </div>
+                }
+            }
             </div>
         </div>
     </div>

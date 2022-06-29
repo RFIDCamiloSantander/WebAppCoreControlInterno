@@ -111,6 +111,7 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditarSector([Bind(include: "IdSector, Nombre, Descripcion, FkIdSucursal")] SectorViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var sector = _context.Sectors.Find(model.IdSector);
@@ -132,6 +133,15 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de Sector.
         public IActionResult EliminarSector(int Id)
         {
+            ViewBag.Errors = false;
+
+            var subSector = _context.SubSectors.Where(m => m.FkIdSector.Equals(Id));
+
+            if (subSector.Any())
+            {
+                ViewBag.Errors = true;
+            }
+
             var sector = _context.Sectors.Find(Id);
 
             SectorViewModel model = new()

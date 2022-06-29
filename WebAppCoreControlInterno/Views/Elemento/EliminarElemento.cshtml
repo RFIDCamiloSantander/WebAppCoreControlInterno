@@ -11,7 +11,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1 class="card-title">Eliminar</h1>
-                    <h3>Seguro desea eliminar esta Elemento?</h3>
+                    <h3>Seguro desea deshabilitar esta Elemento?</h3>
                     <div>
                         <hr />
                         <dl class="row">
@@ -52,7 +52,7 @@
 
                         <form asp-action="EliminarElemento">
                             <input type="hidden" asp-for="IdElemento" />
-                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <input type="submit" value="Deshabilitar" class="btn btn-danger" />
                             <a class="btn btn-primary" asp-action="IndexElemento">Volver a la Lista</a>
                         </form>
                     </div>

@@ -33,7 +33,8 @@ namespace WebAppCoreControlInterno.Controllers
                             Include(b => b.FkIdEstadoNavigation).
                             Include(b => b.FkIdSucursalNavigation).
                             Include(b => b.FkIdSectorNavigation).
-                            Include(b => b.FkIdSubSectorNavigation) select m;
+                            Include(b => b.FkIdSubSectorNavigation).
+                            Include(b => b.FkIdEmpleadoEncargadoNavigation) select m;
 
             if (!String.IsNullOrEmpty(pBase))
             {
@@ -174,7 +175,6 @@ namespace WebAppCoreControlInterno.Controllers
             {
                 var elemento = _context.Elementos.Find(model.IdElemento);
 
-                System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(model) );
                 elemento.IdElemento = model.IdElemento;
                 elemento.Epc = model.Epc;
                 elemento.Dimension = model.Dimension;
@@ -214,7 +214,16 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de SubSector.
         public IActionResult EliminarElemento(int Id)
         {
+            ViewBag.Errors = false;
             var elemento = _context.Elementos.Find(Id);
+
+            var movimiento = _context.Movimientos.Where(m => m.FkIdElemento.Equals(Id));
+            var lectura = _context.Lecturas.Where(m => m.FkIdElemento.Equals(Id));
+
+            if(movimiento.Any() || lectura.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             ElementoViewModel model = new()
             {
@@ -249,9 +258,19 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminarConfirmado(int id)
         {
+            var estado = _context.Estados.Where(m => m.Estado1.Contains("deshabilitado")).FirstOrDefault();
+
             var elemento = await _context.Elementos.FindAsync(id);
-            _context.Elementos.Remove(elemento);
+
+            elemento.FkIdEstado = estado.IdEstado;
+
+            _context.Entry(elemento).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+            //_context.Elementos.Remove(elemento);
+
+            //await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(IndexElemento));
         }
     }

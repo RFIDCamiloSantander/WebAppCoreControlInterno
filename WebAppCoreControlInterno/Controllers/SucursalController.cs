@@ -154,7 +154,14 @@ namespace WebAppCoreControlInterno.Controllers
         //Para confirmar eliminacion de Sucursal.
         public IActionResult EliminarSucursal(int Id)
         {
+            ViewBag.Errors = false;
             var tSucursal = _context.Sucursals.Find(Id);
+            var tSector = _context.Sectors.Where(m => m.FkIdSucursal.Equals(Id));
+
+            if (tSector.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             SucursalViewModel model = new()
             {

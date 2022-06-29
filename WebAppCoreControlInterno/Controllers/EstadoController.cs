@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
 {
@@ -112,12 +113,21 @@ namespace WebAppCoreControlInterno.Controllers
         //Pantalla de confirmacion de eliminacion de Estado.
         public IActionResult EliminarEstado(int Id)
         {
-            EstadoViewModel model = new EstadoViewModel();
+            ViewBag.Errors = false;
+            var tElemento = _context.Elementos.Where(m => m.FkIdEstado.Equals(Id));
+
+            if (tElemento.Any())
+            {
+                ViewBag.Errors = true;
+            }
 
             var tEstado = _context.Estados.Find(Id);
 
-            model.IdEstado = tEstado.IdEstado;
-            model.Estado1 = tEstado.Estado1;
+            EstadoViewModel model = new()
+            {
+                IdEstado = tEstado.IdEstado,
+                Estado1 = tEstado.Estado1,
+            };
 
             return View(model);
         }
@@ -130,6 +140,7 @@ namespace WebAppCoreControlInterno.Controllers
         public async Task<IActionResult> EliminarEstadoConfirmado(int id)
         {
             var estado = await _context.Estados.FindAsync(id);
+
             _context.Estados.Remove(estado);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(IndexEstado));
