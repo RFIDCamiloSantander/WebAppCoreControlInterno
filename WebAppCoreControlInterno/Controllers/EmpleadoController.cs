@@ -75,6 +75,14 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearEmpleado(EmpleadoViewModel model)
         {
+            var tEmpleado = _context.Empleados.Where(m => m.Rut.Equals(model.Rut));
+
+            if (tEmpleado.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Empleado con este RUT";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 if (model.Contrasena == model.Contrasena2)

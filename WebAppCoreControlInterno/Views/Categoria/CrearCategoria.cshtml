@@ -12,12 +12,20 @@
                     <h1 class="card-title">Crear Categoria</h1>
                     <form asp-action="CrearCategoria">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <p class="text-danger text-center h6">@ViewBag?.ErrorMessage</p>
                         <div class="mb-3">
                             <label class="form-label" for="txtCategoria" asp-for="Nombre"></label>
                             <input class="form-control" type="text" id="txtCategoria" asp-for="Nombre" />
                             <span class="text-danger" asp-validation-for="Nombre"></span>
                         </div>
-                        <button class="btn btn-primary btn-lg" type="submit">Crear Categoría</button>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-info" asp-action="IndexCategoria">Volver</a>
+                            </div>
+                            <div class="col text-end">
+                                <button class="btn btn-primary" type="submit" value="Create">Crear</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

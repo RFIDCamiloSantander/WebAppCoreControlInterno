@@ -34,6 +34,14 @@ namespace WebAppCoreControlInterno.Controllers
 
         public async Task<IActionResult> CrearCategoria(CategoriaViewModel model)
         {
+            var tCategoria = _context.Categoria.Where(m => m.Nombre.Equals(model.Nombre));
+
+            if (tCategoria.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe una Categoría con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Categoria categoria = new()
@@ -50,7 +58,7 @@ namespace WebAppCoreControlInterno.Controllers
             return View(model);
         }
 
-        //Para mostrar el Cargo a editar.
+        //Para mostrar el Categoría a editar.
         public IActionResult EditarCategoria(int Id)
         {
 
@@ -66,7 +74,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para editar Cargo.
+        //Para editar Categoría.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditarCategoria([Bind(include: "IdCategoria, Nombre")] CategoriaViewModel model)
@@ -86,7 +94,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para confirmar eliminacion de Cargo.
+        //Para confirmar eliminacion de Categoría.
         public IActionResult EliminarCategoria(int Id)
         {
             var tCategoria = _context.Categoria.Find(Id);
@@ -101,7 +109,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
-        //Para eliminar Cargo.
+        //Para eliminar Categoría.
         [HttpPost, ActionName("EliminarCategoria")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EliminarConfirmado(int id)

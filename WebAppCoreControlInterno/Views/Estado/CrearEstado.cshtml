@@ -13,12 +13,20 @@
                     <h1 class="card-title">Crear Estado</h1>
                     <form asp-action="CrearEstado">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <p class="text-danger text-center h6">@ViewBag?.ErrorMessage</p>
                         <div class="mb-3">
                             <label class="form-label" for="txtCargo" asp-for="Estado1">Estado</label>
                             <input class="form-control" type="text" id="txtCargo" asp-for="Estado1" />
                             <span class="text-danger" asp-validation-for="Estado1"></span>
                         </div>
-                        <button class="btn btn-primary btn-lg" type="submit">Crear Estado</button>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-info" asp-action="IndexCargo">Volver</a>
+                            </div>
+                            <div class="col text-end">
+                                <button class="btn btn-primary" type="submit">Crear Estado</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

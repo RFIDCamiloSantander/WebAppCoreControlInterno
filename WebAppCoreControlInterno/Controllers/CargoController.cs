@@ -49,12 +49,13 @@ namespace WebAppCoreControlInterno.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CargoViewModel model)
         {
-            System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(model) );
+            //System.Diagnostics.Debug.WriteLine( JsonConvert.SerializeObject(model) );
 
             var tCargo = _context.Cargos.Where(m => m.Cargo1.Equals(model.Cargo1));
 
             if (tCargo.Any())
             {
+                ViewBag.ErrorMessage = "Ya existe un Cargo con este nombre";
                 return View(model);
             }
 

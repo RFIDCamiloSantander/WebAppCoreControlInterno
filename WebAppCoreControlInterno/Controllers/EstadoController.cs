@@ -55,9 +55,17 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearEstado(EstadoViewModel model)
         {
+            var tEstado = _context.Estados.Where(m => m.Estado1.Equals(model.Estado1));
+
+            if (tEstado.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Estado con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
-                Estado estado = new Estado()
+                Estado estado = new()
                 {
                     Estado1 = model.Estado1
                 };
