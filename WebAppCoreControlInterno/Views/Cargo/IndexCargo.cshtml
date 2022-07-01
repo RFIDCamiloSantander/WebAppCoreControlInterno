@@ -1,5 +1,5 @@
-﻿@model PagedList.IPagedList<WebAppCoreControlInterno.Models.Cargo>
-@using PagedList.Mvc;
+﻿@model X.PagedList.IPagedList<WebAppCoreControlInterno.Models.Cargo>
+@using X.PagedList.Mvc;
 
 @{ViewBag.Title = "Lista Cargos";}
 
@@ -56,8 +56,7 @@
     </table>
     <br />
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.
-    @Html.PagedListPager(Model, PagedList => Url.Action("Index", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+    @*@Html.PagedListPager(Model, PagedList => Url.Action("Index", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))*@
 </div>
 
 

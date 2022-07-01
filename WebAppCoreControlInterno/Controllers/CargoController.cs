@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
 using PagedList;
+using X.PagedList;
 using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
