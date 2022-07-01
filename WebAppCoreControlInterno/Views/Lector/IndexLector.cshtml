@@ -7,6 +7,7 @@
 @{
     Func<dynamic, object> lectorTemplate =
     @<tr>
+        <td class="align-middle">@item.Nombre</td>
         <td class="align-middle">@item.Mac</td>
         <td class="align-middle">@item.Ip</td>
         <td class="align-middle">@item.NroSerie</td>
@@ -37,7 +38,8 @@
         <thead>
             <form action="IndexLector" method="get">
                 <tr>
-                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="MAC" name="mac" value=@ViewBag.Nombre /></th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="Nombre" name="nombre" value=@ViewBag?.Nombre /> </th>
+                    <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="MAC" name="mac" value=@ViewBag.Mac /></th>
                     <th><input type="text" class="form-control shadow-sm" autocomplete="off" style="max-width: 150px" placeholder="IP" name="ip" value=@ViewBag.Ip /></th>
                     <th></th>
                     <th></th>
@@ -51,6 +53,7 @@
                 </tr>
             </form>
             <tr>
+                <th>Nombre</th>
                 <th>Mac</th>
                 <th>Ip</th>
                 <th>NroSerie</th>

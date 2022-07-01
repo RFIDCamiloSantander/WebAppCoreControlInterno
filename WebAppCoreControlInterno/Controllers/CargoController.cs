@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppCoreControlInterno.Models;
 using WebAppCoreControlInterno.Models.ViewModels;
+using PagedList;
 using Newtonsoft.Json;
 
 namespace WebAppCoreControlInterno.Controllers
@@ -24,9 +25,22 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexCargo( string cargo )
+        public ViewResult IndexCargo( string cargo, string sortOrder, int? page, string currentFilter )
         {
             ViewBag.Cargo = cargo;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.SortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (cargo != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                cargo = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = cargo;
 
             var cargos = from m in _context.Cargos select m;
 
@@ -35,8 +49,70 @@ namespace WebAppCoreControlInterno.Controllers
                 cargos = cargos.Where( m => m.Cargo1.Contains( cargo ) );
             }
 
-            return View(await cargos.ToListAsync());
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    cargos = cargos.OrderByDescending(m => m.Cargo1);
+                    break;
+
+                default:
+                    cargos = cargos.OrderBy(m => m.Cargo1);
+                    break;
+            }
+
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(cargos.ToPagedList(pageNumber, pageSize));
+
+            //return View(await cargos.ToListAsync());
         }
+
+
+
+        ////Para mostrar Vista principal.
+        //public async Task<IActionResult> IndexCargo(string cargo, string sortOrder, int? page, string currentFilter)
+        //{
+        //    ViewBag.Cargo = cargo;
+        //    ViewBag.CurrentSort = sortOrder;
+        //    ViewBag.SortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+        //    if (cargo != null)
+        //    {
+        //        page = 1;
+        //    }
+        //    else
+        //    {
+        //        cargo = currentFilter;
+        //    }
+
+        //    ViewBag.CurrentFilter = cargo;
+
+        //    var cargos = from m in _context.Cargos select m;
+
+        //    if (!String.IsNullOrEmpty(cargo))
+        //    {
+        //        cargos = cargos.Where(m => m.Cargo1.Contains(cargo));
+        //    }
+
+        //    switch (sortOrder)
+        //    {
+        //        case "name_desc":
+        //            cargos = cargos.OrderByDescending(m => m.Cargo1);
+        //            break;
+
+        //        default:
+        //            cargos = cargos.OrderBy(m => m.Cargo1);
+        //            break;
+        //    }
+
+        //    int pageSize = 3;
+        //    int pageNumber = (page ?? 1);
+        //    return View(cargos.ToPagedList(pageNumber, pageSize));
+
+        //    //return View(await cargos.ToListAsync());
+        //}
+
+
 
         ////Para mostrar Vista para Crear.
         //public IActionResult Create()

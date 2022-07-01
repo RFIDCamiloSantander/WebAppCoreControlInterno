@@ -219,6 +219,9 @@ namespace WebAppCoreControlInterno.Models
 
                 entity.ToTable("EMPLEADO");
 
+                entity.HasIndex(e => e.Rut, "IX_EMPLEADO")
+                    .IsUnique();
+
                 entity.Property(e => e.Apellido1)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -263,6 +266,9 @@ namespace WebAppCoreControlInterno.Models
                 entity.HasKey(e => e.IdEstado);
 
                 entity.ToTable("ESTADO");
+
+                entity.HasIndex(e => e.Estado1, "UK_ESTADO")
+                    .IsUnique();
 
                 entity.Property(e => e.Estado1)
                     .IsRequired()
@@ -321,6 +327,10 @@ namespace WebAppCoreControlInterno.Models
                 entity.Property(e => e.Marca).HasMaxLength(50);
 
                 entity.Property(e => e.Modelo).HasMaxLength(50);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.NroParte).HasMaxLength(50);
 

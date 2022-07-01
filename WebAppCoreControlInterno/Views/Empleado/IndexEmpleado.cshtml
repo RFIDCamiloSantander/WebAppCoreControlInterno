@@ -4,7 +4,7 @@
 
 @await Html.PartialAsync("_NavbarAdministracion")
 
-<div class="container mt-5">
+<div class="container mt-5 mb-2">
     <div class="row">
         <div class="col">
             <h1>Empleados</h1>
@@ -14,50 +14,81 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <form action="IndexEmpleado" method="get">
-                <tr>
-                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="RUT" name="rut" value=@ViewBag.Rut /></th>
-                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Nombres" name="nombre" value=@ViewBag.Nombre /></th>
-                    <th><input type="text" class="form-control shadow-sm w-auto" autocomplete="off" placeholder="Apellidos" name="apellido" value=@ViewBag.Apellido /></th>
-                    <th></th>
-                    <th></th>
-                    <th class="text-end">
-                        <input type="submit" value="Filtrar" class="btn btn-success" />
-                    </th>
-                    <th class="text-end">
-                        <a type="button" class="btn btn-danger" asp-action="IndexEmpleado">X</a>
-                    </th>
-                </tr>
-            </form>
-            <tr>
-                <th>RUT</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Tag/Epc</th>
-                <th>Cargo</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var empleado in Model)
-            {
-                <tr>
-                    <td class="align-middle">@Html.DisplayFor(m => empleado.Rut)</td>
-                    <td class="align-middle">@Html.DisplayFor(m => empleado.Nombre1) @Html.DisplayFor(m => empleado.Nombre2)</td>
-                    <td class="align-middle">@Html.DisplayFor(m => empleado.Apellido1) @Html.DisplayFor(m => empleado.Apellido2)</td>
-                    <td class="align-middle">@Html.DisplayFor(m => empleado.Epc)</td>
-                    <td class="align-middle">@Html.DisplayFor(m => empleado.FkIdCargoNavigation.Cargo1)</td>
-                    <td class="align-middle">
-                        <a class="btn btn-primary btn-sm" href="EditarEmpleado/@empleado.IdEmpleado">Editar</a>
-                        <a class="btn btn-danger btn-sm" href="EliminarEmpleado/@empleado.IdEmpleado">Eliminar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-2 h-100">
+            <div class="card shadow-sm">
+                <h5 class="card-header">
+                    <div class="row">
+                        <div class="col align-self-center">
+                                Filtros
+                        </div>
+                        <div class="col text-end">
+                            <a type="button" class="btn btn-danger ms-auto" asp-action="IndexEmpleado">X</a>
+                        </div>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <form action="IndexEmpleado" method="get">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control small shadow-sm" id="floatingRut" name="rut" placeholder="RUT" value=@ViewBag.Rut />
+                            <label for="floatingRut">RUT</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control shadow-sm" id="floatingNombres" autocomplete="off" placeholder="Nombres" name="nombre" value=@ViewBag.Nombres />
+                            <label for="floatingNombres">Nombres</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control shadow-sm" id="floatingApellidos" autocomplete="off" placeholder="Apellidos" name="apellido" value=@ViewBag.Apellidos />
+                            <label for="floatingApellidos">Apellidos</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control shadow-sm" id="floatingEpc" autocomplete="off" placeholder="EPC Exacto" name="epc" value=@ViewBag.Epc />
+                            <label for="floatingApellidos">EPC Exacto</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <input type="submit" value="filtrar" class="btn btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-10 h-100 mb-2">
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>RUT</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Tag/Epc</th>
+                        <th>Cargo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var empleado in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@Html.DisplayFor(m => empleado.Rut)</td>
+                            <td class="align-middle">@Html.DisplayFor(m => empleado.Nombre1) @Html.DisplayFor(m => empleado.Nombre2)</td>
+                            <td class="align-middle">@Html.DisplayFor(m => empleado.Apellido1) @Html.DisplayFor(m => empleado.Apellido2)</td>
+                            <td class="align-middle">@Html.DisplayFor(m => empleado.Epc)</td>
+                            <td class="align-middle">@Html.DisplayFor(m => empleado.FkIdCargoNavigation.Cargo1)</td>
+                            <td class="align-middle text-end">
+                                <a class="btn btn-primary btn-sm" href="EditarEmpleado/@empleado.IdEmpleado">Editar</a>
+                                <a class="btn btn-danger btn-sm" href="EliminarEmpleado/@empleado.IdEmpleado">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
 </div>

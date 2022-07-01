@@ -26,11 +26,12 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para mostrar Vista principal.
-        public async Task<IActionResult> IndexLector(string mac, string ip, string nroSerie, string nroParte, string marca, string modelo, string sucursal)
+        public async Task<IActionResult> IndexLector(string nombre,string mac, string ip, string nroSerie, string nroParte, string marca, string modelo, string sucursal)
         {
             //var lectores = await _context.Lectors.ToListAsync();
 
             //return View( lectores );
+            
 
             var lectors = from m in _context.Lectors.Include(m => m.FkIdSucursalNavigation) select m;
 
@@ -88,6 +89,26 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearLector(LectorViewModel model)
         {
+            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
+
+            var nombreLector = _context.Lectors.Where(m => m.Nombre.Equals(model.Nombre));
+            var macLector = _context.Lectors.Where(m => m.Mac.Equals(model.Mac));
+            var ipLector = _context.Lectors.Where(m => m.Ip.Equals(model.Ip));
+
+            if (nombreLector.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Lector con este Nombre";
+                return View(model);
+            }else if (macLector.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Lector con esta MAC";
+                return View(model);
+            }else if (ipLector.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Lector con esta IP";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Lector lector = new()
@@ -112,7 +133,6 @@ namespace WebAppCoreControlInterno.Controllers
                 return RedirectToAction(nameof(IndexLector));
             }
 
-            ViewBag.Sucursals = new SelectList(_context.Sucursals, "IdSucursal", "Nombre", model.FkIdSucursal);
             return View(model);
         }
 

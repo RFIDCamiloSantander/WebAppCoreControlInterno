@@ -65,6 +65,14 @@ namespace WebAppCoreControlInterno.Controllers
         {
             //System.Diagnostics.Debug.WriteLine("el viewbag");
 
+            var tSector = _context.Sectors.Where(m => m.Nombre.Equals(model.Nombre));
+
+            if (tSector.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Sector con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Sector sector = new()

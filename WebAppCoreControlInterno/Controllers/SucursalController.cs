@@ -68,6 +68,14 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearSucursal(SucursalViewModel model)
         {
+            var tSucursal = _context.Sucursals.Where(m => m.Nombre.Equals(model.Nombre));
+
+            if (tSucursal.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe una Sucursal con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Sucursal sucursal = new()

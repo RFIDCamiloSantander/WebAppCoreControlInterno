@@ -25,11 +25,11 @@ namespace WebAppCoreControlInterno.Controllers
 
 
         //Para obtener los datos de la Tabla Empleado
-        public async Task<IActionResult> IndexEmpleado(string nombre, string rut, string apellido)
+        public async Task<IActionResult> IndexEmpleado(string nombre, string rut, string apellido, string epc)
         {
-            ViewBag.Nombre = nombre;
+            ViewBag.Nombres = nombre;
             ViewBag.Rut = rut;
-            ViewBag.Apellido = apellido;
+            ViewBag.Apellidos = apellido;
 
             var empleados = from m in _context.Empleados.Include(b => b.FkIdCargoNavigation) select m;
             if (!String.IsNullOrEmpty(nombre))
@@ -47,19 +47,13 @@ namespace WebAppCoreControlInterno.Controllers
                 empleados = empleados.Where(e => e.Apellido1.Contains(apellido) || e.Apellido2.Contains(apellido));
             }
 
+            if (!String.IsNullOrEmpty(epc))
+            {
+                empleados = empleados.Where(e => e.Epc.Equals(epc));
+            }
+
             return View(await empleados.ToListAsync());
         }
-
-
-
-        ////Para obtener los datos de la Tabla Empleado
-        //[Route("IndexEmpleadoFiltro")]
-        //public async Task<IActionResult> IndexEmpleado(string nombre)
-        //{
-        //    var empleados = _context.Empleados.Where( e => e.Nombre1.Contains(nombre));
-        //    //var empleados = _context.Empleados.Include(b => b.FkIdCargoNavigation);
-        //    return View(await empleados.ToListAsync());
-        //}
 
 
 
@@ -69,6 +63,8 @@ namespace WebAppCoreControlInterno.Controllers
             ViewData["Cargos"] = new SelectList(_context.Cargos, "IdCargo", "Cargo1");
             return View();
         }
+
+
 
         //Para crear empleados - por POST
         [HttpPost]
@@ -112,6 +108,7 @@ namespace WebAppCoreControlInterno.Controllers
         }
 
 
+
         public IActionResult CrearEmpleadoConEpc()
         {
 
@@ -130,6 +127,7 @@ namespace WebAppCoreControlInterno.Controllers
             System.Diagnostics.Debug.WriteLine(JsonConvert.SerializeObject(_context.Cargos));
             return View();
         }
+
 
 
         //Para mostrar el Empleado a editar.
@@ -155,6 +153,7 @@ namespace WebAppCoreControlInterno.Controllers
 
             return View(model);
         }
+
 
 
         //[Bind(include: "IdCargo, Cargo1")]
@@ -209,6 +208,7 @@ namespace WebAppCoreControlInterno.Controllers
 
             return View(model);
         }
+
 
 
         //Para eliminar Empleado.

@@ -14,6 +14,7 @@ namespace WebAppCoreControlInterno.Models
         }
 
         public int IdLector { get; set; }
+        public string Nombre { get; set; }
         public string Mac { get; set; }
         public string Descripcion { get; set; }
         public string Ip { get; set; }

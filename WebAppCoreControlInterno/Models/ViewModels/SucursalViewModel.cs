@@ -21,11 +21,11 @@ namespace WebAppCoreControlInterno.Models.ViewModels
         [Required(ErrorMessage = "El {0} es Requerido.")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "El {0} es Requerido.")]
+        [Required(ErrorMessage = "La {0} es Requerida.")]
         [Display(Name = "Dirección")]
         public string Direccion { get; set; }
 
-        [Required(ErrorMessage = "El {0} es Requerido.")]
+        [Required(ErrorMessage = "La {0} es Requerida.")]
         [Display(Name = "Región")]
         public string Region { get; set; }
         public string Comuna { get; set; }

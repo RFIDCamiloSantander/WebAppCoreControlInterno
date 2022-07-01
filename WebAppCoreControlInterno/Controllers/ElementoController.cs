@@ -29,7 +29,8 @@ namespace WebAppCoreControlInterno.Controllers
         //Para mostrar Vista principal.
         public async Task<IActionResult> IndexElemento(string pBase, string epc, string nSerie, string nParte, string estado, string sucursal)
         {
-            var elementos = from m in _context.Elementos.Include(b => b.FkIdElementoBaseNavigation).
+            var elementos = from m in _context.Elementos.
+                            Include(b => b.FkIdElementoBaseNavigation).
                             Include(b => b.FkIdEstadoNavigation).
                             Include(b => b.FkIdSucursalNavigation).
                             Include(b => b.FkIdSectorNavigation).

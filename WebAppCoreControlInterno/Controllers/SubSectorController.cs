@@ -67,6 +67,14 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearSubSector(SubSectorViewModel model)
         {
+            var tSubSector = _context.SubSectors.Where(m => m.Nombre.Equals(model.Nombre));
+
+            if (tSubSector.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un SubSector con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 SubSector subSector = new()

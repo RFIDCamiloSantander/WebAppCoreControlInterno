@@ -11,21 +11,25 @@
                 <div class="card-body">
                     <h1 class="card-title">Crear Cargo</h1>
                     <form asp-action="Create">
+
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                         <p class="text-danger text-center h6">@ViewBag?.ErrorMessage</p>
                         <div class="mb-3">
                             <label class="form-label" for="txtCargo" asp-for="Cargo1"></label>
                             <input class="form-control" type="text" id="txtCargo" asp-for="Cargo1" />
                             <span class="text-danger" asp-validation-for="Cargo1"></span>
                         </div>
+
                         <div class="row">
                             <div class="col">
                                 <a class="btn btn-info" asp-action="IndexCargo">Volver</a>
                             </div>
                             <div class="col text-end">
-                                <button class="btn btn-primary" type="submit" value="Create">Crear Cargo</button>
+                                <button class="btn btn-primary" type="submit">Crear</button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

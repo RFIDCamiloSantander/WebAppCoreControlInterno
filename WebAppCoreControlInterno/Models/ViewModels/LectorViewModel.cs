@@ -16,6 +16,8 @@ namespace WebAppCoreControlInterno.Models.ViewModels
 
         public int IdLector { get; set; }
 
+        public string Nombre { get; set; }
+
         [Required(ErrorMessage = "El {0} es Requerido.")]
         public string Mac { get; set; }
 

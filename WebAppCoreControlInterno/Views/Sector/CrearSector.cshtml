@@ -16,6 +16,7 @@
                     <form asp-action="CrearSector">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                        <p class="text-danger text-center h6">@ViewBag?.ErrorMessage</p>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
@@ -45,9 +46,12 @@
                             </div>
                         </div>
 
-                        <div class="row text-end">
+                        <div class="row">
                             <div class="col">
-                                <button type="submit" value="Crear" class="btn btn-primary btn-lg shadow-sm">Crear</button>
+                                <a class="btn btn-info" asp-action="IndexSector">Volver</a>
+                            </div>
+                            <div class="col text-end">
+                                <button class="btn btn-primary" type="submit">Crear</button>
                             </div>
                         </div>
 
