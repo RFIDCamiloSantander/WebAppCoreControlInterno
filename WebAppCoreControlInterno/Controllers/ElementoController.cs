@@ -91,6 +91,14 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearElemento(ElementoViewModel model)
         {
+            var tElemento = _context.Elementos.Where(m => m.Epc.Equals(model.Epc));
+
+            if (tElemento.Any())
+            {
+                ViewBag.ErrorMessage = "Este EPC ya ha sido asignado a otro elemento";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 Elemento elemento = new()

@@ -53,6 +53,14 @@ namespace WebAppCoreControlInterno.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearBase(BaseViewModel model)
         {
+            var tBase = _context.Bases.Where(m => m.Sku == model.Sku);
+
+            if (tBase.Any())
+            {
+                ViewBag.ErrorMessage = "Ya existe un Elemento Base con este nombre";
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
 
