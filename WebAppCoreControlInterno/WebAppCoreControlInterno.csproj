@@ -13,7 +13,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="OctaneSDK" Version="4.0.0" />
-    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+    <PackageReference Include="X.PagedList" Version="8.4.3" />
+    <PackageReference Include="X.PagedList.Mvc" Version="8.0.7" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
+    <PackageReference Include="X.PagedList.Web.Common" Version="8.0.7" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
